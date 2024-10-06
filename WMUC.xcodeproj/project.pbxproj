@@ -1,0 +1,733 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		383618B32A2946F400CD574C /* Radio_practiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618B22A2946F400CD574C /* Radio_practiceApp.swift */; };
+		383618B52A2946F400CD574C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618B42A2946F400CD574C /* ContentView.swift */; };
+		383618B72A2946F500CD574C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383618B62A2946F500CD574C /* Assets.xcassets */; };
+		383618BB2A2946F500CD574C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 383618BA2A2946F500CD574C /* Preview Assets.xcassets */; };
+		383618C52A2946F500CD574C /* Radio_practiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618C42A2946F500CD574C /* Radio_practiceTests.swift */; };
+		383618CF2A2946F500CD574C /* Radio_practiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */; };
+		383618D12A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */; };
+		383618E12A294B3A00CD574C /* ScheduleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618E02A294B3A00CD574C /* ScheduleRow.swift */; };
+		383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618E22A2A92A600CD574C /* MediaBarView.swift */; };
+		385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */; };
+		38706E722A2AACE20000E44F /* FMHomepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706E712A2AACE20000E44F /* FMHomepage.swift */; };
+		38706E762A311BBC0000E44F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706E752A311BBC0000E44F /* Schedule.swift */; };
+		38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */; };
+		38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */; };
+		38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE22B85A48F004E5F54 /* DJActor.swift */; };
+		38A20BE52B894EF2004E5F54 /* ScheduleActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */; };
+		38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE5282A3596E00005BC2F /* CurrentShow.swift */; };
+		38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE52A2A3597E50005BC2F /* InternetManager.swift */; };
+		38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE52C2A3598810005BC2F /* CurrentFMShow.swift */; };
+		38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E83A2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift */; };
+		38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E83D2C0D3AE400CEA99A /* CurrentShowWidgetText.swift */; };
+		38E4E8472C0D404C00CEA99A /* CurrentDigitalShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */; };
+		38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8482C0D417800CEA99A /* notes for future.swift */; };
+		38EE06F32ACA695A006002DE /* RadioType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE06F22ACA695A006002DE /* RadioType.swift */; };
+		38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		383618C12A2946F500CD574C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 383618A72A2946F400CD574C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 383618AE2A2946F400CD574C;
+			remoteInfo = "Radio practice";
+		};
+		383618CB2A2946F500CD574C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 383618A72A2946F400CD574C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 383618AE2A2946F400CD574C;
+			remoteInfo = "Radio practice";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		383618AF2A2946F400CD574C /* Radio practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Radio practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		383618B22A2946F400CD574C /* Radio_practiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceApp.swift; sourceTree = "<group>"; };
+		383618B42A2946F400CD574C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		383618B62A2946F500CD574C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		383618BA2A2946F500CD574C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		383618C02A2946F500CD574C /* Radio practiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio practiceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		383618C42A2946F500CD574C /* Radio_practiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceTests.swift; sourceTree = "<group>"; };
+		383618CA2A2946F500CD574C /* Radio practiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio practiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITests.swift; sourceTree = "<group>"; };
+		383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		383618E02A294B3A00CD574C /* ScheduleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRow.swift; sourceTree = "<group>"; };
+		383618E22A2A92A600CD574C /* MediaBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarView.swift; sourceTree = "<group>"; };
+		385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowWidget.swift; sourceTree = "<group>"; };
+		38706E712A2AACE20000E44F /* FMHomepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMHomepage.swift; sourceTree = "<group>"; };
+		38706E752A311BBC0000E44F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowActor.swift; sourceTree = "<group>"; };
+		38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryHelpers.swift; sourceTree = "<group>"; };
+		38A20BE22B85A48F004E5F54 /* DJActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJActor.swift; sourceTree = "<group>"; };
+		38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleActor.swift; sourceTree = "<group>"; };
+		38A20BE62B8BFAE2004E5F54 /* Radio-practice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Radio-practice-Info.plist"; sourceTree = "<group>"; };
+		38BAE5282A3596E00005BC2F /* CurrentShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShow.swift; sourceTree = "<group>"; };
+		38BAE52A2A3597E50005BC2F /* InternetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetManager.swift; sourceTree = "<group>"; };
+		38BAE52C2A3598810005BC2F /* CurrentFMShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShow.swift; sourceTree = "<group>"; };
+		38E4E83A2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowWidgetPhotoCover.swift; sourceTree = "<group>"; };
+		38E4E83D2C0D3AE400CEA99A /* CurrentShowWidgetText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowWidgetText.swift; sourceTree = "<group>"; };
+		38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowActor.swift; sourceTree = "<group>"; };
+		38E4E8482C0D417800CEA99A /* notes for future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "notes for future.swift"; sourceTree = "<group>"; };
+		38EE06F22ACA695A006002DE /* RadioType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioType.swift; sourceTree = "<group>"; };
+		38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		383618AC2A2946F400CD574C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618BD2A2946F500CD574C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618C72A2946F500CD574C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		383618A62A2946F400CD574C = {
+			isa = PBXGroup;
+			children = (
+				38A20BE62B8BFAE2004E5F54 /* Radio-practice-Info.plist */,
+				383618B12A2946F400CD574C /* WMUC */,
+				383618C32A2946F500CD574C /* WMUC practiceTests */,
+				383618CD2A2946F500CD574C /* WMUC practiceUITests */,
+				383618B02A2946F400CD574C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		383618B02A2946F400CD574C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				383618AF2A2946F400CD574C /* Radio practice.app */,
+				383618C02A2946F500CD574C /* Radio practiceTests.xctest */,
+				383618CA2A2946F500CD574C /* Radio practiceUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		383618B12A2946F400CD574C /* WMUC */ = {
+			isa = PBXGroup;
+			children = (
+				38E4E8482C0D417800CEA99A /* notes for future.swift */,
+				38BAE5272A3596B90005BC2F /* Models */,
+				383618DD2A294AE900CD574C /* Views */,
+				383618B22A2946F400CD574C /* Radio_practiceApp.swift */,
+				383618B62A2946F500CD574C /* Assets.xcassets */,
+				383618B92A2946F500CD574C /* Preview Content */,
+			);
+			path = WMUC;
+			sourceTree = "<group>";
+		};
+		383618B92A2946F500CD574C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				383618BA2A2946F500CD574C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		383618C32A2946F500CD574C /* WMUC practiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				383618C42A2946F500CD574C /* Radio_practiceTests.swift */,
+			);
+			path = "WMUC practiceTests";
+			sourceTree = "<group>";
+		};
+		383618CD2A2946F500CD574C /* WMUC practiceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */,
+				383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */,
+			);
+			path = "WMUC practiceUITests";
+			sourceTree = "<group>";
+		};
+		383618DD2A294AE900CD574C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				38E4E83C2C0D3A6B00CEA99A /* Widget Views */,
+				383618B42A2946F400CD574C /* ContentView.swift */,
+				383618E02A294B3A00CD574C /* ScheduleRow.swift */,
+				383618E22A2A92A600CD574C /* MediaBarView.swift */,
+				38706E712A2AACE20000E44F /* FMHomepage.swift */,
+				385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */,
+				38706E752A311BBC0000E44F /* Schedule.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		38BAE5272A3596B90005BC2F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				38E4E8422C0D401400CEA99A /* Digital Show Classes */,
+				38E4E8412C0D3F2600CEA99A /* FM Show Classes */,
+				38BAE5282A3596E00005BC2F /* CurrentShow.swift */,
+				38A20BE22B85A48F004E5F54 /* DJActor.swift */,
+				38BAE52A2A3597E50005BC2F /* InternetManager.swift */,
+				38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */,
+				38EE06F22ACA695A006002DE /* RadioType.swift */,
+				38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */,
+				38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		38E4E83C2C0D3A6B00CEA99A /* Widget Views */ = {
+			isa = PBXGroup;
+			children = (
+				38E4E83A2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift */,
+				38E4E83D2C0D3AE400CEA99A /* CurrentShowWidgetText.swift */,
+			);
+			path = "Widget Views";
+			sourceTree = "<group>";
+		};
+		38E4E8412C0D3F2600CEA99A /* FM Show Classes */ = {
+			isa = PBXGroup;
+			children = (
+				38BAE52C2A3598810005BC2F /* CurrentFMShow.swift */,
+				38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */,
+			);
+			path = "FM Show Classes";
+			sourceTree = "<group>";
+		};
+		38E4E8422C0D401400CEA99A /* Digital Show Classes */ = {
+			isa = PBXGroup;
+			children = (
+				38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */,
+			);
+			path = "Digital Show Classes";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		383618AE2A2946F400CD574C /* Radio practice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 383618D42A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practice" */;
+			buildPhases = (
+				383618AB2A2946F400CD574C /* Sources */,
+				383618AC2A2946F400CD574C /* Frameworks */,
+				383618AD2A2946F400CD574C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Radio practice";
+			productName = "Radio practice";
+			productReference = 383618AF2A2946F400CD574C /* Radio practice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		383618BF2A2946F500CD574C /* Radio practiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 383618D72A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practiceTests" */;
+			buildPhases = (
+				383618BC2A2946F500CD574C /* Sources */,
+				383618BD2A2946F500CD574C /* Frameworks */,
+				383618BE2A2946F500CD574C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				383618C22A2946F500CD574C /* PBXTargetDependency */,
+			);
+			name = "Radio practiceTests";
+			productName = "Radio practiceTests";
+			productReference = 383618C02A2946F500CD574C /* Radio practiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		383618C92A2946F500CD574C /* Radio practiceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 383618DA2A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practiceUITests" */;
+			buildPhases = (
+				383618C62A2946F500CD574C /* Sources */,
+				383618C72A2946F500CD574C /* Frameworks */,
+				383618C82A2946F500CD574C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				383618CC2A2946F500CD574C /* PBXTargetDependency */,
+			);
+			name = "Radio practiceUITests";
+			productName = "Radio practiceUITests";
+			productReference = 383618CA2A2946F500CD574C /* Radio practiceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		383618A72A2946F400CD574C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					383618AE2A2946F400CD574C = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					383618BF2A2946F500CD574C = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 383618AE2A2946F400CD574C;
+					};
+					383618C92A2946F500CD574C = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 383618AE2A2946F400CD574C;
+					};
+				};
+			};
+			buildConfigurationList = 383618AA2A2946F400CD574C /* Build configuration list for PBXProject "WMUC" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 383618A62A2946F400CD574C;
+			productRefGroup = 383618B02A2946F400CD574C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				383618AE2A2946F400CD574C /* Radio practice */,
+				383618BF2A2946F500CD574C /* Radio practiceTests */,
+				383618C92A2946F500CD574C /* Radio practiceUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		383618AD2A2946F400CD574C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				383618BB2A2946F500CD574C /* Preview Assets.xcassets in Resources */,
+				383618B72A2946F500CD574C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618BE2A2946F500CD574C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618C82A2946F500CD574C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		383618AB2A2946F400CD574C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38E4E8472C0D404C00CEA99A /* CurrentDigitalShowActor.swift in Sources */,
+				385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */,
+				38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */,
+				38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */,
+				38706E762A311BBC0000E44F /* Schedule.swift in Sources */,
+				38A20BE52B894EF2004E5F54 /* ScheduleActor.swift in Sources */,
+				38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */,
+				383618B52A2946F400CD574C /* ContentView.swift in Sources */,
+				383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */,
+				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
+				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
+				38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */,
+				38EE06F32ACA695A006002DE /* RadioType.swift in Sources */,
+				38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */,
+				38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */,
+				38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */,
+				38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */,
+				38706E722A2AACE20000E44F /* FMHomepage.swift in Sources */,
+				383618B32A2946F400CD574C /* Radio_practiceApp.swift in Sources */,
+				383618E12A294B3A00CD574C /* ScheduleRow.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618BC2A2946F500CD574C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				383618C52A2946F500CD574C /* Radio_practiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		383618C62A2946F500CD574C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				383618CF2A2946F500CD574C /* Radio_practiceUITests.swift in Sources */,
+				383618D12A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		383618C22A2946F500CD574C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 383618AE2A2946F400CD574C /* Radio practice */;
+			targetProxy = 383618C12A2946F500CD574C /* PBXContainerItemProxy */;
+		};
+		383618CC2A2946F500CD574C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 383618AE2A2946F400CD574C /* Radio practice */;
+			targetProxy = 383618CB2A2946F500CD574C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		383618D22A2946F500CD574C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		383618D32A2946F500CD574C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		383618D52A2946F500CD574C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Radio-practice-Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akash.radio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		383618D62A2946F500CD574C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development: akashbapple@gmail.com (P7S2KZV36H)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Radio-practice-Info.plist";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.akash.radio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		383618D82A2946F500CD574C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akash.Radio-practiceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Radio practice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Radio practice";
+			};
+			name = Debug;
+		};
+		383618D92A2946F500CD574C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akash.Radio-practiceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Radio practice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Radio practice";
+			};
+			name = Release;
+		};
+		383618DB2A2946F500CD574C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 332PVAK8KC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akash.Radio-practiceUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Radio practice";
+			};
+			name = Debug;
+		};
+		383618DC2A2946F500CD574C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 332PVAK8KC;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
+				MACOSX_DEPLOYMENT_TARGET = 13.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.akash.Radio-practiceUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Radio practice";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		383618AA2A2946F400CD574C /* Build configuration list for PBXProject "WMUC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				383618D22A2946F500CD574C /* Debug */,
+				383618D32A2946F500CD574C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		383618D42A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				383618D52A2946F500CD574C /* Debug */,
+				383618D62A2946F500CD574C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		383618D72A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				383618D82A2946F500CD574C /* Debug */,
+				383618D92A2946F500CD574C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		383618DA2A2946F500CD574C /* Build configuration list for PBXNativeTarget "Radio practiceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				383618DB2A2946F500CD574C /* Debug */,
+				383618DC2A2946F500CD574C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 383618A72A2946F400CD574C /* Project object */;
+}
