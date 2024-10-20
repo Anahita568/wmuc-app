@@ -32,6 +32,9 @@
 		38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8482C0D417800CEA99A /* notes for future.swift */; };
 		38EE06F32ACA695A006002DE /* RadioType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE06F22ACA695A006002DE /* RadioType.swift */; };
 		38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */; };
+		8477AF782CC5924100CC3608 /* CurrentDigitalShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */; };
+		8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */; };
+		8477AF7C2CC5993400CC3608 /* DigitalHomepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		38E4E8482C0D417800CEA99A /* notes for future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "notes for future.swift"; sourceTree = "<group>"; };
 		38EE06F22ACA695A006002DE /* RadioType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioType.swift; sourceTree = "<group>"; };
 		38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarManager.swift; sourceTree = "<group>"; };
+		8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShow.swift; sourceTree = "<group>"; };
+		8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowWidget.swift; sourceTree = "<group>"; };
+		8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalHomepage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +181,8 @@
 				383618E02A294B3A00CD574C /* ScheduleRow.swift */,
 				383618E22A2A92A600CD574C /* MediaBarView.swift */,
 				38706E712A2AACE20000E44F /* FMHomepage.swift */,
+				8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */,
+				8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */,
 				385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */,
 				38706E752A311BBC0000E44F /* Schedule.swift */,
 			);
@@ -218,6 +226,7 @@
 		38E4E8422C0D401400CEA99A /* Digital Show Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */,
 				38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */,
 			);
 			path = "Digital Show Classes";
@@ -364,7 +373,10 @@
 				383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */,
 				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
 				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
+				8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */,
+				8477AF7C2CC5993400CC3608 /* DigitalHomepage.swift in Sources */,
 				38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */,
+				8477AF782CC5924100CC3608 /* CurrentDigitalShow.swift in Sources */,
 				38EE06F32ACA695A006002DE /* RadioType.swift in Sources */,
 				38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */,
 				38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */,

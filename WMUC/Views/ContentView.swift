@@ -1,30 +1,31 @@
-//
-//  ContentView.swift
-//  Radio practice
-//
-//  Created by Akash B on 6/1/23.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         TabView {
+            // FM Tab
             FMHomepage()
                 .tabItem {
-                    Text("FM")
-                }.tag(1)
-            Text("Tab Content 2")
+                    Label("FM", systemImage: "radio")
+                }
+                .tag(1)
+            
+            // Digital Tab
+            DigitalHomepage()
                 .tabItem {
-                    Text("Digital")
-                }.tag(2)
+                    Label("Digital", systemImage: "dot.radiowaves.left.and.right")
+                }
+                .tag(2)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+        // Provide both the FM and Digital show environment objects for preview
         ContentView()
             .environmentObject(CurrentFMShow())
+            .environmentObject(CurrentDigitalShow())
     }
 }
+

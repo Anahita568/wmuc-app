@@ -23,34 +23,40 @@ struct FMHomepage: View {
                         CurrentFMShowWidget(width: .constant(geometry.size.width))
                             .layoutPriority(2)
                         
-                            
+                        
                         ScheduleRow(day: "Tuesday", radioType: .fm)
                             .padding(.horizontal)
-//                            .background {
-//                                Color.red
-//                            }
-                        //                        Section(footer: FMMediaBarView(isPlaying: true)) {
-                        //
-                        ////
-                        
-                        ////    //                        ScheduleRow()
-                        ////    //                            .padding(.horizontal)
-                        ////    //                        ScheduleRow()
-                        ////    //                            .padding(.horizontal)
-                        ////    //                        ScheduleRow()
-                        ////    //                            .padding(.horizontal)
-                        ////    //                        ScheduleRow()
-                        ////    //                            .padding(.horizontal)
-                        ////    //                            .padding([.bottom], 20)
-                        //                       }
-//                            .background(Color.red)
                     }
-                    .navigationTitle("FM")
                 }
+                // Add the MediaBarView at the bottom of the page
+                MediaBarView(isPlaying: false, radioType: .fm)
+                    .frame(width: geometry.size.width)
+                    .padding(.bottom, geometry.safeAreaInsets.bottom)
+                
+                //                            .background {
+                //                                Color.red
+                //                            }
+                //                        Section(footer: FMMediaBarView(isPlaying: true)) {
+                //
+                ////
+                
+                ////    //                        ScheduleRow()
+                ////    //                            .padding(.horizontal)
+                ////    //                        ScheduleRow()
+                ////    //                            .padding(.horizontal)
+                ////    //                        ScheduleRow()
+                ////    //                            .padding(.horizontal)
+                ////    //                        ScheduleRow()
+                ////    //                            .padding(.horizontal)
+                ////    //                            .padding([.bottom], 20)
+                //                       }
+                //                            .background(Color.red)
             }
+            .navigationTitle("FM")
         }
     }
 }
+
 
 struct Homepage_Previews: PreviewProvider {
     static var previews: some View {

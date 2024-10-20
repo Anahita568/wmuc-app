@@ -29,7 +29,14 @@ struct CurrentShowPayload: Decodable {
 // A custom error type for internet operation-related failures that don't throw errors by default
 enum InternetError: Error {
     case dateFormatFailure(String) // For use with actors' iso 8601 formatters, which don't throw errors when they fail to convert Strings to Dates
-}
+    case invalidURL(String)                      // Error when a URL is invalid
+    case networkFailure(String)                  // Error for network connection issues
+    case serverError(String)                     // Error for receiving an invalid server response
+    case dataParsingFailure(String)              // Error for failure in parsing data (e.g., JSON decoding)
+    }
+
+
+
 
 class DateFormatter {
     static let isoFormatter = ISO8601DateFormatter()

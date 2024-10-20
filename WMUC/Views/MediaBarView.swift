@@ -1,15 +1,11 @@
-//
-//  MediaBarView.swift
-//  Radio practice
-//
-//  Created by Akash B on 6/2/23.
-//
-
 import SwiftUI
 
-struct FMMediaBarView: View {
+
+struct MediaBarView: View {
     @State var isPlaying: Bool
     @EnvironmentObject var liveFMShow: CurrentFMShow
+    @EnvironmentObject var liveDigitalShow: CurrentDigitalShow
+    var radioType: RadioType // Determines if we're handling FM or Digital
     
     var body: some View {
         ZStack {
@@ -22,10 +18,11 @@ struct FMMediaBarView: View {
                     .cornerRadius(7)
                 Spacer()
                 VStack(alignment: .leading) {
-                    Text(liveFMShow.title ?? "Loading")
+                    // Display different show titles based on whether it's FM or Digital
+                    Text(currentShowTitle())
                         .font(.headline)
                         .redacted(reason: .placeholder)
-                    Text("DJ Names")
+                    Text("DJ Names") // You can update this later to show actual DJ names if needed
                         .font(.subheadline)
                 }
                 .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
@@ -52,6 +49,16 @@ struct FMMediaBarView: View {
             .padding([.top, .bottom], 15)
         }
     }
+    
+    // A helper function to switch between FM and Digital show titles
+    private func currentShowTitle() -> String {
+        switch radioType {
+        case .fm:
+            return liveFMShow.title ?? "Loading FM Show"
+        case .digital:
+            return liveDigitalShow.title ?? "Loading Digital Show"
+        }
+    }
 }
 
 class FMMediaBarManager: MediaBarManager, ObservableObject {
@@ -69,9 +76,26 @@ class FMMediaBarManager: MediaBarManager, ObservableObject {
     }
 }
 
-struct MediaBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        FMMediaBarView(isPlaying: false)
-            .environmentObject(CurrentFMShow())
+class DigitalMediaBarManager: MediaBarManager, ObservableObject {
+    private static let url = ""
+    @Published var name: String = ""
+    @Published var djs: [String] = [""]
+    
+    init() {
+        // Connects self to InternetManager class
+        InternetManager.connectDigitalShowManager(self as MediaBarManager)
+    }
+    
+    func updateMedia(name: String, djs: [String]) {
+        
     }
 }
+
+struct MediaBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        MediaBarView(isPlaying: false, radioType: .fm)
+            .environmentObject(CurrentFMShow()) // FM Show preview
+            .environmentObject(CurrentDigitalShow()) // Digital Show preview
+    }
+}
+
