@@ -27,7 +27,7 @@ actor CurrentDigitalShowActor {
         }
         
         // Prepare the request URL
-        let requestURL = URL(string: "https://wmuc.umd.edu/api/currentShow/digital")
+        let requestURL = URL(string: "https://wmuc.umd.edu/api/currentShow/DIG")
         
         // Define the task that fetches data from the server
         let fetchTask = Task {
