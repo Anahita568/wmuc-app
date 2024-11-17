@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 struct MediaBarView: View {
     @State var isPlaying: Bool
     @EnvironmentObject var liveFMShow: CurrentFMShow
@@ -9,48 +8,49 @@ struct MediaBarView: View {
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            Color.white
+                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -2) // Add shadow to "float" the bar
+                .ignoresSafeArea(edges: .bottom)
+            
             HStack {
+                // Album Cover or Placeholder
                 Image("albumPlaceholder")
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 55, height: 55)
                     .cornerRadius(7)
-                Spacer()
+                
+                // Show Title and DJ Name
                 VStack(alignment: .leading) {
-                    // Display different show titles based on whether it's FM or Digital
                     Text(currentShowTitle())
                         .font(.headline)
-                        .redacted(reason: .placeholder)
-                    Text("DJ Names") // You can update this later to show actual DJ names if needed
+                        .foregroundColor(.black)
+                    
+                    Text(currentDJName())
                         .font(.subheadline)
+                        .foregroundColor(.gray)
                 }
-                .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
-                .padding([.leading], 5)
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 5)
+                
+                // Play/Pause Button
                 Button(action: {
-                    isPlaying = !isPlaying
+                    isPlaying.toggle()
                 }) {
-                    isPlaying ?
-                    Image(systemName: "play.fill")
+                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                         .resizable()
+                        .frame(width: 20, height: 20)
                         .foregroundColor(.black)
-                        .frame(width: 15, height: 15)
-                        .aspectRatio(contentMode: .fit)
-                    : Image(systemName: "pause.fill")
-                        .resizable()
-                        .foregroundColor(.black)
-                        .frame(width: 15, height: 15)
-                        .aspectRatio(contentMode: .fit)
                 }
             }
-            .padding([.trailing], 40)
-            .padding([.leading], 25)
-            .padding([.top, .bottom], 15)
+            .padding()
         }
+        .frame(height: 70) // Fixed height for the MediaBar
+        .background(Color.white) // Background color
+        .cornerRadius(15) // Rounded top corners
     }
     
-    // A helper function to switch between FM and Digital show titles
+    // Function to determine the current show title
     private func currentShowTitle() -> String {
         switch radioType {
         case .fm:
@@ -59,43 +59,26 @@ struct MediaBarView: View {
             return liveDigitalShow.title ?? "Loading Digital Show"
         }
     }
-}
-
-class FMMediaBarManager: MediaBarManager, ObservableObject {
-    private static let url = ""
-    @Published var name: String = ""
-    @Published var djs: [String] = [""]
     
-    init() {
-        // Connects self to InternetManager class
-        InternetManager.connectFMShowManager(self as MediaBarManager)
-    }
-    
-    func updateMedia(name: String, djs: [String]) {
-        
+    // Function to determine the current DJ name //Fix later
+    private func currentDJName() -> String {
+        switch radioType {
+        case .fm:
+            return "Placeholder FM DJ"
+        case .digital:
+            return "Placeholder Digital DJ"
+        }
     }
 }
 
-class DigitalMediaBarManager: MediaBarManager, ObservableObject {
-    private static let url = ""
-    @Published var name: String = ""
-    @Published var djs: [String] = [""]
-    
-    init() {
-        // Connects self to InternetManager class
-        InternetManager.connectDigitalShowManager(self as MediaBarManager)
-    }
-    
-    func updateMedia(name: String, djs: [String]) {
-        
-    }
-}
 
 struct MediaBarView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaBarView(isPlaying: false, radioType: .fm)
-            .environmentObject(CurrentFMShow()) // FM Show preview
-            .environmentObject(CurrentDigitalShow()) // Digital Show preview
+        MediaBarView(isPlaying: true, radioType: .fm)
+            .environmentObject(CurrentFMShow())
+            .environmentObject(CurrentDigitalShow())
+            .previewLayout(.sizeThatFits)
     }
 }
+
 

@@ -3,19 +3,19 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            // FM Tab
-            FMHomepage()
+            // Listen Tab?
+            HomePageView()
                 .tabItem {
-                    Label("FM", systemImage: "radio")
+                    Label("Listen", systemImage: "music.note")
+                }
+                .tag(0)
+            
+            // Schedule Tab
+            Schedule()
+                .tabItem {
+                    Label("Schedule", systemImage: "calendar")
                 }
                 .tag(1)
-            
-            // Digital Tab
-            DigitalHomepage()
-                .tabItem {
-                    Label("Digital", systemImage: "dot.radiowaves.left.and.right")
-                }
-                .tag(2)
         }
     }
 }
@@ -28,4 +28,5 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject(CurrentDigitalShow())
     }
 }
+
 
