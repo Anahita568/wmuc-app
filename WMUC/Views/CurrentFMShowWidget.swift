@@ -4,28 +4,48 @@
 //
 //  Created by Akash Balenalli on 12/21/23.
 //
-
+//
 import SwiftUI
 
 struct CurrentFMShowWidget: View {
     @EnvironmentObject private var liveFMShow: CurrentFMShow
-    @Binding var width: CGFloat
-    
+    @Binding var width: CGFloat // Binding to adjust the widget width
+    @Binding var isPlaying: Bool // Binding to manage play/pause state
+    var onPlayTapped: () -> Void // Closure for play button action
+
     var body: some View {
         if !liveFMShow.isLoading {
             HStack {
-                // 📱 The photo that appears at the top of the page showing the current show's cover
+                // Show Cover Photo
                 CurrentShowWidgetPhotoCover(photoURL: liveFMShow.photoURL, width: $width)
                 
-                // 📱 The views that appear at the top of the page showing the current show's title, live status, and end time
-                CurrentShowWidgetText(showEndTime: liveFMShow.endTime!, showTitle: liveFMShow.title!, showIsActive: liveFMShow.isActive)
+                // Show Details: Title, Status, and End Time
+                CurrentShowWidgetText(
+                    showEndTime: liveFMShow.endTime ?? Date(),
+                    showTitle: liveFMShow.title ?? "Unknown Show",
+                    showIsActive: liveFMShow.isActive
+                )
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Spacer()
+                // Play Button
+                Button(action: {
+                    onPlayTapped() // Execute the action passed as a parameter
+                }) {
+                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .clipShape(Circle())
+                }
             }
-            .padding(.leading, 18)
-            .padding(.trailing, 18)
+            .padding(.horizontal, 18)
+        } else {
+            // Show a loading view or a placeholder while data is being fetched
+            Text("Loading FM Show...")
+                .frame(width: width)
+                .padding(.all, 18)
         }
     }
 }
-
-

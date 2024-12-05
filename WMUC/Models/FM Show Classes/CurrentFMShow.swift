@@ -97,7 +97,7 @@ class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate 
     func updateCurrentShowFrom(payload: CurrentShowPayload) {
         
         title = payload.title
-        djs = [""] // TODO: Change later
+        djs = ["DJ Name"] // TODO: Change later
         photoURL = payload.image
         
         do {

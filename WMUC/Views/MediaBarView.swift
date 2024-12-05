@@ -1,84 +1,141 @@
 import SwiftUI
 
 struct MediaBarView: View {
-    @State var isPlaying: Bool
     @EnvironmentObject var liveFMShow: CurrentFMShow
     @EnvironmentObject var liveDigitalShow: CurrentDigitalShow
-    var radioType: RadioType // Determines if we're handling FM or Digital
-    
+    var isPlaying: Bool
+    var radioType: RadioType
+    var onPlayPauseTapped: () -> Void // Closure for play/pause action
+
     var body: some View {
-        ZStack {
-            Color.white
-                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -2) // Add shadow to "float" the bar
-                .ignoresSafeArea(edges: .bottom)
-            
-            HStack {
-                // Album Cover or Placeholder
-                Image("albumPlaceholder")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 55, height: 55)
-                    .cornerRadius(7)
-                
-                // Show Title and DJ Name
-                VStack(alignment: .leading) {
-                    Text(currentShowTitle())
-                        .font(.headline)
-                        .foregroundColor(.black)
-                    
-                    Text(currentDJName())
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+        if !isShowLoading() {
+            ZStack {
+                // Background for the bar with shadow effect
+                Color.white
+                    .cornerRadius(15)
+                    .shadow(color: .black.opacity(0.25), radius: 10, x: 0, y: 6)
+
+                HStack {
+                    // Album Cover
+                    CurrentShowWidgetPhotoCover(photoURL: currentPhotoURL(), width: .constant(UIScreen.main.bounds.width * 0.40))
+
+                    // Show Details
+                    VStack(alignment: .leading) {
+                        Text(currentShowTitle())
+                            .font(.headline)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                            .foregroundColor(.black)
+
+                        Text(currentDJName())
+                            .font(.subheadline)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 10)
+
+                    // Play/Pause Button
+                    Button(action: {
+                        handlePlayPause()
+                    }) {
+                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .clipShape(Circle())
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 5)
-                
-                // Play/Pause Button
-                Button(action: {
-                    isPlaying.toggle()
-                }) {
-                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
-                }
+                .padding(.horizontal, 16)
+                .frame(height: 70)
             }
-            .padding()
+            .padding(.horizontal, 16)
+            .padding(.bottom, 40) // Adjust this value to move the bar lower
+            .padding(.top, 30)    // Add a bit of spacing to push it further down from other elements
+        } else {
+            // Show a loading placeholder
+            Text("Loading Show...")
+                .frame(height: 70)
+                .frame(maxWidth: .infinity)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(15)
         }
-        .frame(height: 70) // Fixed height for the MediaBar
-        .background(Color.white) // Background color
-        .cornerRadius(15) // Rounded top corners
     }
-    
-    // Function to determine the current show title
+
+    private func handlePlayPause() {
+        onPlayPauseTapped() // Trigger the closure passed from the parent
+
+        // Play or pause the appropriate stream
+        if isPlaying {
+            AudioManager.shared.pausePlayback()
+        } else {
+            let streamURL = currentStreamURL()
+            if let url = streamURL {
+                AudioManager.shared.playStream(url: url)
+            } else {
+                print("Stream URL is unavailable.")
+            }
+        }
+    }
+
+    // Helper function to determine if the show data is loading
+    private func isShowLoading() -> Bool {
+        switch radioType {
+        case .fm:
+            return liveFMShow.isLoading
+        case .digital:
+            return liveDigitalShow.isLoading
+        }
+    }
+
+    // Helper function to get the stream URL
+    private func currentStreamURL() -> URL? {
+        switch radioType {
+        case .fm:
+            return URL(string: "https://wmuc.umd.edu:8443/wmuc-hq")
+        case .digital:
+            return URL(string: "https://wmuc.umd.edu:8443/wmuc2-high")
+        }
+    }
+
+    // Helper function to get the photo URL
+    private func currentPhotoURL() -> URL? {
+        switch radioType {
+        case .fm:
+            return liveFMShow.photoURL
+        case .digital:
+            return liveDigitalShow.photoURL
+        }
+    }
+
+    // Helper function to get the current show title
     private func currentShowTitle() -> String {
         switch radioType {
         case .fm:
-            return liveFMShow.title ?? "Loading FM Show"
+            return liveFMShow.title ?? "FM Show"
         case .digital:
-            return liveDigitalShow.title ?? "Loading Digital Show"
+            return liveDigitalShow.title ?? "Digital Show"
         }
     }
-    
-    // Function to determine the current DJ name //Fix later
+
+    // Helper function to get the current DJ name
     private func currentDJName() -> String {
         switch radioType {
         case .fm:
-            return "Placeholder FM DJ"
+            if let djs = liveFMShow.djs, !djs.isEmpty {
+                return djs.joined(separator: ", ")
+            } else {
+                return "Unknown FM DJ"
+            }
         case .digital:
-            return "Placeholder Digital DJ"
+            if let djs = liveDigitalShow.djs, !djs.isEmpty {
+                return djs.joined(separator: ", ")
+            } else {
+                return "Unknown Digital DJ"
+            }
         }
     }
 }
-
-
-struct MediaBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediaBarView(isPlaying: true, radioType: .fm)
-            .environmentObject(CurrentFMShow())
-            .environmentObject(CurrentDigitalShow())
-            .previewLayout(.sizeThatFits)
-    }
-}
-
-
