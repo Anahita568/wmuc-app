@@ -16,17 +16,17 @@ struct CurrentShowWidgetPhotoCover: View {
             switch phase {
             case .empty:
                 Rectangle()
-                    .frame(width: 0.3 * width, height: 0.3 * width)
+                    .frame(width: 0.3 * width, height: 0.3 * width) // Fixed size
                     .cornerRadius(10)
                     .foregroundStyle(.gray)
             case .success(let image):
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill) // Ensures full coverage
+                    .frame(width: 0.3 * width, height: 0.3 * width) // Fixed size
                     .cornerRadius(10)
-                    .frame(width: 0.3 * width)
+                    .clipped() // Prevents overflow
                     .padding(.leading, 0)
-                
             case .failure:
                 Rectangle()
                     .frame(width: 0.3 * width, height: 0.3 * width)

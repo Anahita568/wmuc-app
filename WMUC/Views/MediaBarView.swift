@@ -18,6 +18,7 @@ struct MediaBarView: View {
                 HStack {
                     // Album Cover
                     CurrentShowWidgetPhotoCover(photoURL: currentPhotoURL(), width: .constant(UIScreen.main.bounds.width * 0.40))
+                    
 
                     // Show Details
                     VStack(alignment: .leading) {

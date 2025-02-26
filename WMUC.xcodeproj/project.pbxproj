@@ -38,7 +38,6 @@
 		849712082CDA9B100099DEFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849712072CDA9B0B0099DEFC /* HomePageView.swift */; };
 		849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6C2D003B4C009CBF3F /* AudioManager.swift */; };
 		849E6F6F2D003C92009CBF3F /* MediaBarSwipableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */; };
-		849E6F712D013D66009CBF3F /* 12.4 notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F702D013D5A009CBF3F /* 12.4 notes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +93,6 @@
 		849712072CDA9B0B0099DEFC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		849E6F6C2D003B4C009CBF3F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarSwipableView.swift; sourceTree = "<group>"; };
-		849E6F702D013D5A009CBF3F /* 12.4 notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "12.4 notes.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +144,6 @@
 		383618B12A2946F400CD574C /* WMUC */ = {
 			isa = PBXGroup;
 			children = (
-				849E6F702D013D5A009CBF3F /* 12.4 notes.swift */,
 				38E4E8482C0D417800CEA99A /* notes for future.swift */,
 				38BAE5272A3596B90005BC2F /* Models */,
 				383618DD2A294AE900CD574C /* Views */,
@@ -385,7 +382,6 @@
 				383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */,
 				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
 				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
-				849E6F712D013D66009CBF3F /* 12.4 notes.swift in Sources */,
 				8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */,
 				8477AF7C2CC5993400CC3608 /* DigitalHomepage.swift in Sources */,
 				38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */,
@@ -579,7 +575,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,7 +616,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
