@@ -2,134 +2,120 @@
 //  WMUC
 //
 //  Created by Anahita on 11/5/24.
-
 import SwiftUI
 
 struct HomePageView: View {
     @EnvironmentObject var liveFMShow: CurrentFMShow
     @EnvironmentObject var liveDigitalShow: CurrentDigitalShow
+    
     @ObservedObject private var audioManager = AudioManager.shared
+    
     @State private var isPlayingFM: Bool = false
     @State private var isPlayingDigital: Bool = false
+    
     let fmRadioStreamURL = URL(string: "https://wmuc.umd.edu:8443/wmuc-hq")!
     let digitalRadioStreamURL = URL(string: "https://wmuc.umd.edu:8443/wmuc2-high")!
-
+    
     var body: some View {
         GeometryReader { geometry in
-            NavigationView {
+            ZStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 16) {
-                        // Top Section with Gray Background
+                        
                         ZStack(alignment: .topLeading) {
+                            // gray background rectangle with rounded corners
                             Rectangle()
                                 .fill(Color.gray.opacity(0.2))
-                                .frame(height: geometry.size.height * 0.25)
+                                .frame(height: geometry.size.height * 0.20) // % of screen height
                                 .cornerRadius(20)
-                                .ignoresSafeArea(edges: .top)
                             
                             VStack(alignment: .leading, spacing: 8) {
-                                HStack(alignment: .lastTextBaseline, spacing: 4) {
-                                    Text("wmuc radio")
-                                        .font(Font.custom("SF Pro", size: geometry.size.width * 0.1))
-                                        .bold()
-                                    
-                                    Text("90.5")
-                                        .font(Font.custom("SF Pro", size: geometry.size.width * 0.05))
-                                        .baselineOffset(geometry.size.height * 0.015)
-                                }
+                                Image("wmucLogo")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geometry.size.width * 0.8) // adjust logo width
+                                    .padding(.bottom, 4)
                                 
                                 Text("where college radio is good radio")
-                                    .font(Font.custom("SF Pro", size: geometry.size.width * 0.06))
+                                    .font(.system(size: geometry.size.width * 0.06))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
                                     .foregroundColor(.black)
-                                
-                                // Widgets Section
-                                HStack(spacing: geometry.size.width * 0.03) {
-                                    ForEach(0..<4) { _ in
-                                        Button(action: {
-                                            print("Widget tapped")
-                                        }) {
-                                            Rectangle()
-                                                .fill(Color.gray.opacity(0.5))
-                                                .frame(width: geometry.size.width * 0.1, height: geometry.size.height * 0.05)
-                                                .cornerRadius(5)
-                                        }
-                                    }
-                                }
                             }
-                            .padding()
+                            .padding(.top, 30) // how wmuc logo is centered
+                            .padding(.horizontal)
                         }
                         
-                        // Tune In Section Header
                         Text("what’s playing?/tune in")
-                            .font(Font.custom("SF Pro", size: geometry.size.width * 0.07))
-                            .bold()
+                            .font(.system(size: geometry.size.width * 0.07))
+                            .padding(.top, 5) //increase to increase space between text and logo
                         
-                        // FM Show Section
                         Text("fm")
-                            .font(Font.custom("SF Pro", size: geometry.size.width * 0.06))
-                        NavigationLink(destination: FMHomepage()) {
-                            CurrentFMShowWidget(
-                                width: .constant(geometry.size.width * 0.85),
-                                isPlaying: $isPlayingFM,
-                                onPlayTapped: {
-                                    togglePlayback(for: .fm)
-                                }
-                            )
-                                .environmentObject(liveFMShow)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                        }
+                            .font(.system(size: geometry.size.width * 0.06))
+                            .padding(.top, 8) //increase to increase space between fm and what's playing
+                            .foregroundColor(.red)
                         
-                        // Digital Show Section
+                        // fm show details and play/pause button
+                        CurrentFMShowWidget(
+                            width: .constant(geometry.size.width * 0.85), // widget width
+                            isPlaying: $isPlayingFM, // binding to play/pause state
+                            onPlayTapped: {
+                                togglePlayback(for: .fm) // handle fm play/pause
+                            }
+                        )
+                        .environmentObject(liveFMShow) // inject fm show data
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        
                         Text("digital")
-                            .font(Font.custom("SF Pro", size: geometry.size.width * 0.06))
-                        NavigationLink(destination: DigitalHomepage()) {
-                            CurrentDigitalShowWidget(
-                                width: .constant(geometry.size.width * 0.85),
-                                isPlaying: $isPlayingDigital,
-                                onPlayTapped: {
-                                    togglePlayback(for: .digital)
-                                }
-                            )
-                                .environmentObject(liveDigitalShow)
-                                .padding()
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                        }
+                            .font(.system(size: geometry.size.width * 0.06))
+                            .foregroundColor(.red)
                         
-                        Spacer()
+                        CurrentDigitalShowWidget(
+                            width: .constant(geometry.size.width * 0.85),
+                            isPlaying: $isPlayingDigital,
+                            onPlayTapped: {
+                                togglePlayback(for: .digital)
+                            }
+                        )
+                        .environmentObject(liveDigitalShow)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        
+                        //add extra vertical space at the bottom of content
+                        Spacer(minLength: 100)
                     }
-                    .padding(.horizontal)
-                    
-                    // Swipable Media Bar Section
+                    .padding(.top, 40)      // top padding to shift content down
+                    .padding(.horizontal)   // horizontal padding for layout margins
+                }
+                
+                VStack {
+                    Spacer() // pushes the media bar to the bottom
                     MediaBarSwipableView(
                         isPlayingFM: $isPlayingFM,
                         isPlayingDigital: $isPlayingDigital
                     )
                     .frame(height: 70)
                     .padding(.horizontal, 16)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 20)        // bottom padding to avoid the screen edge
                 }
-                .navigationTitle("")
-                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
     
-    // Toggle Playback Logic Using AudioManager
     private func togglePlayback(for radioType: RadioType) {
         switch radioType {
         case .fm:
+            // stop playback if already playing, otherwise start the stream
             if isPlayingFM {
                 audioManager.stopPlayback()
             } else {
                 audioManager.playStream(url: fmRadioStreamURL)
             }
-            isPlayingFM.toggle()
-            isPlayingDigital = false // Stop digital playback
+            isPlayingFM.toggle()         // update fm play state
+            isPlayingDigital = false     // make sure dig stream is stopped
         case .digital:
             if isPlayingDigital {
                 audioManager.stopPlayback()
@@ -137,7 +123,7 @@ struct HomePageView: View {
                 audioManager.playStream(url: digitalRadioStreamURL)
             }
             isPlayingDigital.toggle()
-            isPlayingFM = false // Stop FM playback
+            isPlayingFM = false
         }
     }
 }

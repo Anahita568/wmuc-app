@@ -5,7 +5,6 @@
 //  Created by Anahita on 10/18/24.
 //
 
-
 import SwiftUI
 
 struct CurrentDigitalShowWidget: View {

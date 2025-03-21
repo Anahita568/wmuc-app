@@ -34,8 +34,8 @@ class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate 
         }
         
         /* Filler data */
-        title = "title"
-        djs = ["dj name"]
+        title = "Not live"
+        djs = ["--"]
         photoURL = URL(string: "https://wmuc.umd.edu")
         startTime = Date.now
         endTime = Date.now

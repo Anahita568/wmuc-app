@@ -11,12 +11,12 @@
  - Document that covers where common things might be (where does the app read status codes and set data accordingly? where does the app make the current show fetch request? where does the app update the frontend? etc.)
 
  
- 2/26
+ 3/21
  - Get DJ names
  - Adjust how title and DJ names are displayed on FM and digital bars (show name should be first)
- - Add widgets?
-    - Instagram, website, tiktok (?), do we use other social media?
- - Remove  'Listen' and 'Schedule' bar at bottom
+ - Request from Graphic design team launch page and image for when there are no shows playing?
+ - Make sure sizing/dimensions stay consistent
+ - Add tests
  - Next step:
-    - Create a new branch that just has the basic play/pause functionality, remove unused code
+    - App store approval
 */

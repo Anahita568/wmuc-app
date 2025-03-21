@@ -14,15 +14,11 @@
 		383618C52A2946F500CD574C /* Radio_practiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618C42A2946F500CD574C /* Radio_practiceTests.swift */; };
 		383618CF2A2946F500CD574C /* Radio_practiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */; };
 		383618D12A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */; };
-		383618E12A294B3A00CD574C /* ScheduleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618E02A294B3A00CD574C /* ScheduleRow.swift */; };
 		383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618E22A2A92A600CD574C /* MediaBarView.swift */; };
 		385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */; };
-		38706E722A2AACE20000E44F /* FMHomepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706E712A2AACE20000E44F /* FMHomepage.swift */; };
-		38706E762A311BBC0000E44F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38706E752A311BBC0000E44F /* Schedule.swift */; };
 		38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */; };
 		38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */; };
 		38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE22B85A48F004E5F54 /* DJActor.swift */; };
-		38A20BE52B894EF2004E5F54 /* ScheduleActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */; };
 		38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE5282A3596E00005BC2F /* CurrentShow.swift */; };
 		38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE52A2A3597E50005BC2F /* InternetManager.swift */; };
 		38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE52C2A3598810005BC2F /* CurrentFMShow.swift */; };
@@ -31,10 +27,8 @@
 		38E4E8472C0D404C00CEA99A /* CurrentDigitalShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */; };
 		38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8482C0D417800CEA99A /* notes for future.swift */; };
 		38EE06F32ACA695A006002DE /* RadioType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE06F22ACA695A006002DE /* RadioType.swift */; };
-		38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */; };
 		8477AF782CC5924100CC3608 /* CurrentDigitalShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */; };
 		8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */; };
-		8477AF7C2CC5993400CC3608 /* DigitalHomepage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */; };
 		849712082CDA9B100099DEFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849712072CDA9B0B0099DEFC /* HomePageView.swift */; };
 		849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6C2D003B4C009CBF3F /* AudioManager.swift */; };
 		849E6F6F2D003C92009CBF3F /* MediaBarSwipableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */; };
@@ -68,15 +62,11 @@
 		383618CA2A2946F500CD574C /* Radio practiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio practiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITests.swift; sourceTree = "<group>"; };
 		383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		383618E02A294B3A00CD574C /* ScheduleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRow.swift; sourceTree = "<group>"; };
 		383618E22A2A92A600CD574C /* MediaBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarView.swift; sourceTree = "<group>"; };
 		385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowWidget.swift; sourceTree = "<group>"; };
-		38706E712A2AACE20000E44F /* FMHomepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMHomepage.swift; sourceTree = "<group>"; };
-		38706E752A311BBC0000E44F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowActor.swift; sourceTree = "<group>"; };
 		38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryHelpers.swift; sourceTree = "<group>"; };
 		38A20BE22B85A48F004E5F54 /* DJActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJActor.swift; sourceTree = "<group>"; };
-		38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleActor.swift; sourceTree = "<group>"; };
 		38A20BE62B8BFAE2004E5F54 /* Radio-practice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Radio-practice-Info.plist"; sourceTree = "<group>"; };
 		38BAE5282A3596E00005BC2F /* CurrentShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShow.swift; sourceTree = "<group>"; };
 		38BAE52A2A3597E50005BC2F /* InternetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetManager.swift; sourceTree = "<group>"; };
@@ -86,10 +76,8 @@
 		38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowActor.swift; sourceTree = "<group>"; };
 		38E4E8482C0D417800CEA99A /* notes for future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "notes for future.swift"; sourceTree = "<group>"; };
 		38EE06F22ACA695A006002DE /* RadioType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioType.swift; sourceTree = "<group>"; };
-		38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarManager.swift; sourceTree = "<group>"; };
 		8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShow.swift; sourceTree = "<group>"; };
 		8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowWidget.swift; sourceTree = "<group>"; };
-		8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalHomepage.swift; sourceTree = "<group>"; };
 		849712072CDA9B0B0099DEFC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		849E6F6C2D003B4C009CBF3F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarSwipableView.swift; sourceTree = "<group>"; };
@@ -187,12 +175,8 @@
 				383618E22A2A92A600CD574C /* MediaBarView.swift */,
 				849712072CDA9B0B0099DEFC /* HomePageView.swift */,
 				383618B42A2946F400CD574C /* ContentView.swift */,
-				383618E02A294B3A00CD574C /* ScheduleRow.swift */,
-				38706E712A2AACE20000E44F /* FMHomepage.swift */,
-				8477AF7B2CC5993000CC3608 /* DigitalHomepage.swift */,
 				8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */,
 				385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */,
-				38706E752A311BBC0000E44F /* Schedule.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -208,8 +192,6 @@
 				38BAE52A2A3597E50005BC2F /* InternetManager.swift */,
 				38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */,
 				38EE06F22ACA695A006002DE /* RadioType.swift */,
-				38FD497D2AD3871C00DD04CF /* MediaBarManager.swift */,
-				38A20BE42B894EF2004E5F54 /* ScheduleActor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -375,16 +357,12 @@
 				385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */,
 				38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */,
 				38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */,
-				38706E762A311BBC0000E44F /* Schedule.swift in Sources */,
-				38A20BE52B894EF2004E5F54 /* ScheduleActor.swift in Sources */,
 				38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */,
 				383618B52A2946F400CD574C /* ContentView.swift in Sources */,
 				383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */,
 				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
 				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
 				8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */,
-				8477AF7C2CC5993400CC3608 /* DigitalHomepage.swift in Sources */,
-				38FD497E2AD3871C00DD04CF /* MediaBarManager.swift in Sources */,
 				8477AF782CC5924100CC3608 /* CurrentDigitalShow.swift in Sources */,
 				38EE06F32ACA695A006002DE /* RadioType.swift in Sources */,
 				38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */,
@@ -393,10 +371,8 @@
 				849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */,
 				38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */,
 				38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */,
-				38706E722A2AACE20000E44F /* FMHomepage.swift in Sources */,
 				383618B32A2946F400CD574C /* Radio_practiceApp.swift in Sources */,
 				849712082CDA9B100099DEFC /* HomePageView.swift in Sources */,
-				383618E12A294B3A00CD574C /* ScheduleRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

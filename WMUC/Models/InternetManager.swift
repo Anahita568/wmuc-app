@@ -23,7 +23,7 @@ struct InternetManager {
     // MARK: - Data to store for current FM show view model
     static private var currentFMShow: CurrentShow?
     static private var fmShowEndDate: Date? // The earliest date at which the data becomes stale again & refresh is needed
-    static private var fmShowViewModel: MediaBarManager? = nil
+    //static private var fmShowViewModel: MediaBarManager? = nil
     static private var earliestDateWhenFMStale: Date? = nil
     
     // MARK: - Data to store for current Digital show view model
@@ -86,18 +86,6 @@ struct InternetManager {
                     await show.makeCurrentShowInactive()
                 }
             }
-
-// MARK: - Linker Methods
-static func connectFMShowManager(_ manager: MediaBarManager) {
-    fmShowViewModel = manager
-    print("Linked to FM Show Manager!")
-}
-static func connectDigitalShowManager(_ manager: MediaBarManager) {
-    print("Linked to Digital Show Manager!") 
-}
-    private static func getIndividualShowDJ() {
-        // Logic to fetch DJs
-    }
 }
 
 protocol InternetManagerShowDelegate {
@@ -108,6 +96,7 @@ protocol InternetManagerShowDelegate {
     /* Used to tell the view model (a child of CurrentShow) that there is no show currently playing. */
     func setToInactive()
 }
+
 
 
 

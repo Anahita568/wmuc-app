@@ -25,8 +25,8 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
         }
         
         /* Filler data */
-        title = "Digital Show Title"
-        djs = ["DJ Name"]
+        title = "Not live"
+        djs = ["--"]
         photoURL = URL(string: "https://wmuc.umd.edu")
         startTime = Date.now
         endTime = Date.now
