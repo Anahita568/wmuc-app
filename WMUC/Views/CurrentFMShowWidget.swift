@@ -16,8 +16,11 @@ struct CurrentFMShowWidget: View {
     var body: some View {
         if !liveFMShow.isLoading {
             HStack {
-                // Show Cover Photo
-                CurrentShowWidgetPhotoCover(photoURL: liveFMShow.photoURL, width: $width)
+                CurrentShowWidgetPhotoCover(
+                    photoURL: liveFMShow.photoURL,
+                    width: $width,
+                    isActive: liveFMShow.isActive
+                )
                 
                 // Show Details: Title, Status, and End Time
                 CurrentShowWidgetText(

@@ -14,7 +14,6 @@
 		383618C52A2946F500CD574C /* Radio_practiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618C42A2946F500CD574C /* Radio_practiceTests.swift */; };
 		383618CF2A2946F500CD574C /* Radio_practiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */; };
 		383618D12A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */; };
-		383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618E22A2A92A600CD574C /* MediaBarView.swift */; };
 		385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */; };
 		38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */; };
 		38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */; };
@@ -31,7 +30,6 @@
 		8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */; };
 		849712082CDA9B100099DEFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849712072CDA9B0B0099DEFC /* HomePageView.swift */; };
 		849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6C2D003B4C009CBF3F /* AudioManager.swift */; };
-		849E6F6F2D003C92009CBF3F /* MediaBarSwipableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +60,6 @@
 		383618CA2A2946F500CD574C /* Radio practiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Radio practiceUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		383618CE2A2946F500CD574C /* Radio_practiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITests.swift; sourceTree = "<group>"; };
 		383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		383618E22A2A92A600CD574C /* MediaBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarView.swift; sourceTree = "<group>"; };
 		385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowWidget.swift; sourceTree = "<group>"; };
 		38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowActor.swift; sourceTree = "<group>"; };
 		38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryHelpers.swift; sourceTree = "<group>"; };
@@ -80,7 +77,6 @@
 		8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowWidget.swift; sourceTree = "<group>"; };
 		849712072CDA9B0B0099DEFC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		849E6F6C2D003B4C009CBF3F /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaBarSwipableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				38E4E83C2C0D3A6B00CEA99A /* Widget Views */,
-				849E6F6E2D003C65009CBF3F /* MediaBarSwipableView.swift */,
-				383618E22A2A92A600CD574C /* MediaBarView.swift */,
 				849712072CDA9B0B0099DEFC /* HomePageView.swift */,
 				383618B42A2946F400CD574C /* ContentView.swift */,
 				8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */,
@@ -359,7 +353,6 @@
 				38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */,
 				38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */,
 				383618B52A2946F400CD574C /* ContentView.swift in Sources */,
-				383618E32A2A92A600CD574C /* MediaBarView.swift in Sources */,
 				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
 				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
 				8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */,
@@ -367,7 +360,6 @@
 				38EE06F32ACA695A006002DE /* RadioType.swift in Sources */,
 				38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */,
 				38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */,
-				849E6F6F2D003C92009CBF3F /* MediaBarSwipableView.swift in Sources */,
 				849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */,
 				38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */,
 				38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */,
@@ -527,7 +519,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				DEVELOPMENT_TEAM = QCBCXQV42X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -568,7 +560,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A2PXQ66BB6;
+				DEVELOPMENT_TEAM = QCBCXQV42X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

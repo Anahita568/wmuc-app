@@ -25,7 +25,7 @@ struct HomePageView: View {
                         ZStack(alignment: .topLeading) {
                             // gray background rectangle with rounded corners
                             Rectangle()
-                                .fill(Color.gray.opacity(0.2))
+                                .fill(Color.gray.opacity(0.3))
                                 .frame(height: geometry.size.height * 0.20) // % of screen height
                                 .cornerRadius(20)
                             
@@ -40,7 +40,7 @@ struct HomePageView: View {
                                     .font(.system(size: geometry.size.width * 0.06))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
-                                    .foregroundColor(.black)
+                                    
                             }
                             .padding(.top, 30) // how wmuc logo is centered
                             .padding(.horizontal)
@@ -91,16 +91,7 @@ struct HomePageView: View {
                     .padding(.horizontal)   // horizontal padding for layout margins
                 }
                 
-                VStack {
-                    Spacer() // pushes the media bar to the bottom
-                    MediaBarSwipableView(
-                        isPlayingFM: $isPlayingFM,
-                        isPlayingDigital: $isPlayingDigital
-                    )
-                    .frame(height: 70)
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 20)        // bottom padding to avoid the screen edge
-                }
+                
             }
         }
     }
@@ -108,22 +99,26 @@ struct HomePageView: View {
     private func togglePlayback(for radioType: RadioType) {
         switch radioType {
         case .fm:
-            // stop playback if already playing, otherwise start the stream
+            // Only attempt playback if an FM show is active.
+            guard liveFMShow.isActive else { return }
+            
             if isPlayingFM {
                 audioManager.stopPlayback()
             } else {
                 audioManager.playStream(url: fmRadioStreamURL)
             }
-            isPlayingFM.toggle()         // update fm play state
+            isPlayingFM.toggle()         // Update fm play state
             isPlayingDigital = false     // make sure dig stream is stopped
+            
         case .digital:
+            
             if isPlayingDigital {
                 audioManager.stopPlayback()
             } else {
                 audioManager.playStream(url: digitalRadioStreamURL)
             }
             isPlayingDigital.toggle()
-            isPlayingFM = false
+            isPlayingFM = false          
         }
     }
 }

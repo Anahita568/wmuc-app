@@ -4,7 +4,6 @@
 //
 //  Created by Anahita on 10/18/24.
 //
-
 import SwiftUI
 
 struct CurrentDigitalShowWidget: View {
@@ -16,8 +15,11 @@ struct CurrentDigitalShowWidget: View {
     var body: some View {
         if !liveDigitalShow.isLoading {
             HStack {
-                // Show Cover Photo
-                CurrentShowWidgetPhotoCover(photoURL: liveDigitalShow.photoURL, width: $width)
+                CurrentShowWidgetPhotoCover(
+                    photoURL: liveDigitalShow.photoURL,
+                    width: $width,
+                    isActive: liveDigitalShow.isActive
+                )
                 
                 // Show Details: Title, Status, and End Time
                 CurrentShowWidgetText(

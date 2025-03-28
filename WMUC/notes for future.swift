@@ -12,9 +12,9 @@
 
  
  3/21
+ - App only updates show info when app is refreshed
  - Get DJ names
  - Adjust how title and DJ names are displayed on FM and digital bars (show name should be first)
- - Request from Graphic design team launch page and image for when there are no shows playing?
  - Make sure sizing/dimensions stay consistent
  - Add tests
  - Next step:

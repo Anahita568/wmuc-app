@@ -8,11 +8,11 @@
 import Foundation
 
 class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate {
-    var title: String? = nil // The show title
-    var djs: [String]? = nil // List of DJ names (can be one or more than one)
-    var photoURL: URL? = nil // Image (if it exists)
-    var startTime: Date? = nil // Show start time
-    var endTime: Date? = nil // Show end time
+    @Published var title: String? = nil // The show title
+    @Published var djs: [String]? = nil // List of DJ names (can be one or more than one)
+    @Published var photoURL: URL? = nil // Image (if it exists)
+    @Published var startTime: Date? = nil // Show start time
+    @Published var endTime: Date? = nil // Show end time
     
     //Changing properties tagged with @Published automatically updates UI(?)
     @Published var isActive: Bool = false // Whether a show is playing
