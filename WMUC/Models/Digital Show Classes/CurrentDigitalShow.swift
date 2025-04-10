@@ -23,18 +23,35 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     private var refreshCancellable: AnyCancellable?
     
     init() {
+        // Start the initial refresh immediately
         Task {
             await self.refreshData()
         }
         
-        // sets up a timer that refreshes the data every hour (3600 seconds)
-        refreshCancellable = Timer.publish(every: 3600, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                Task {
-                    await self?.refreshData()
-                }
+        // Calculate the time until the next full hour
+        let now = Date()
+        let calendar = Calendar.current
+        // Get the next full hour (e.g., if now is 8:47, next full hour is 9:00)
+        guard let nextFullHour = calendar.nextDate(after: now,
+                                                     matching: DateComponents(minute: 0, second: 0),
+                                                     matchingPolicy: .nextTime) else {
+            // Fallback: if calculation fails, start repeating every 3600 seconds
+            startRepeatingTimer()
+            return
+        }
+        
+        let initialDelay = nextFullHour.timeIntervalSince(now)
+        print("Next refresh in \(initialDelay) seconds at \(nextFullHour)")
+        
+        // Schedule the first refresh to occur at the next full hour.
+        DispatchQueue.main.asyncAfter(deadline: .now() + initialDelay) { [weak self] in
+            Task {
+                await self?.refreshData()
             }
+            // Then start a repeating timer every 3600 seconds.
+            self?.startRepeatingTimer()
+        }
+        
         
         // filler data
         title = "Not live"
@@ -43,6 +60,15 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
         startTime = Date.now
         endTime = Date.now
         showID = nil
+    }
+    private func startRepeatingTimer() {
+        refreshCancellable = Timer.publish(every: 3600, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                Task {
+                    await self?.refreshData()
+                }
+            }
     }
     
     // Handles data fetching

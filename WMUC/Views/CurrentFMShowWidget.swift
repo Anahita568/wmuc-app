@@ -14,7 +14,7 @@ struct CurrentFMShowWidget: View {
     var onPlayTapped: () -> Void     // Closure for play button action
     
     var body: some View {
-        let _ = print("FM photoURL is: \(liveFMShow.photoURL?.absoluteString ?? "nil")")
+      
         
         return Group {
             if !liveFMShow.isLoading {
