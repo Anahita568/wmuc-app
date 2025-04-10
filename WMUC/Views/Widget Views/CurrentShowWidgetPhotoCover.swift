@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CurrentShowWidgetPhotoCover: View {
-    @State var photoURL: URL?
+     var photoURL: URL?
     @Binding var width: CGFloat
     var isActive: Bool  
     
     var body: some View {
-        if !isActive {
+        if !isActive || photoURL == nil {
             Image("notLive")
                 .resizable()
                 .scaledToFit()
@@ -37,10 +37,12 @@ struct CurrentShowWidgetPhotoCover: View {
                         .clipped() // Prevents overflow.
                         .padding(.leading, 0)
                 case .failure:
-                    Rectangle()
-                        .frame(width: 0.3 * width, height: 0.3 * width)
-                        .foregroundStyle(.gray)
+                    Image("notLive")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 0.30 * width, height: 0.30 * width)
                         .cornerRadius(10)
+                        .clipped()
                 @unknown default:
                     Rectangle()
                         .frame(width: 0.3 * width, height: 0.3 * width)

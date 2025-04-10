@@ -11,11 +11,13 @@
  - Document that covers where common things might be (where does the app read status codes and set data accordingly? where does the app make the current show fetch request? where does the app update the frontend? etc.)
 
  
- 3/21
- - App only updates show info when app is refreshed
+ 4/10
+ - Make sure all dig/fm info automatically updates each hour
+    - And lockbar/control center should automatically update as well
  - Get DJ names
- - Adjust how title and DJ names are displayed on FM and digital bars (show name should be first)
+ - When pausing from the lockbar/control center, the music stops but the pause button does not change
  - Make sure sizing/dimensions stay consistent
+ -
  - Add tests
  - Next step:
     - App store approval

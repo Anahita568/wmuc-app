@@ -15,6 +15,7 @@ struct CurrentDigitalShowWidget: View {
     var body: some View {
         if !liveDigitalShow.isLoading {
             HStack {
+                // Show Cover Photo with the active flag
                 CurrentShowWidgetPhotoCover(
                     photoURL: liveDigitalShow.photoURL,
                     width: $width,
@@ -22,16 +23,13 @@ struct CurrentDigitalShowWidget: View {
                 )
                 
                 // Show Details: Title, Status, and End Time
-                CurrentShowWidgetText(
-                    showEndTime: liveDigitalShow.endTime ?? Date(),
-                    showTitle: liveDigitalShow.title ?? "Unknown Show",
-                    showIsActive: liveDigitalShow.isActive
-                )
-                .frame(maxWidth: .infinity, alignment: .leading)
+                CurrentShowWidgetText<CurrentDigitalShow>()
+                    .environmentObject(liveDigitalShow)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 // Play Button
                 Button(action: {
-                    onPlayTapped() // Execute the action passed as a parameter
+                    onPlayTapped()
                 }) {
                     Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                         .resizable()
@@ -44,7 +42,7 @@ struct CurrentDigitalShowWidget: View {
             }
             .padding(.horizontal, 18)
         } else {
-            // Show a loading view or a placeholder while data is being fetched
+            // Display a loading view or a placeholder while data is being fetched
             Text("Loading Digital Show...")
                 .frame(width: width)
                 .padding(.all, 18)

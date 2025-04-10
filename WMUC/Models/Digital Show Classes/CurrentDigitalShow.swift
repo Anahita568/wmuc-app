@@ -4,27 +4,39 @@
 //
 //  Created by Anahita on 10/18/24.
 //
+
 import Foundation
+import Combine
 
 class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDelegate {
-    @Published var title: String? = nil // The show title
-    @Published var djs: [String]? = nil // List of DJ names 
-    @Published var photoURL: URL? = nil // Image (if it exists)
-    @Published var startTime: Date? = nil // Show start time
-    @Published var endTime: Date? = nil // Show end time
+    @Published var title: String? = nil           // The show title
+    @Published var djs: [String]? = nil             // List of DJ names (can be one or more)
+    @Published var photoURL: URL? = nil             // Image (if it exists)
+    @Published var startTime: Date? = nil           // Show start time
+    @Published var endTime: Date? = nil             // Show end time
     
-    @Published var isActive: Bool = false // Whether a show is playing
-    @Published var isLoading: Bool = true // Whether the class is fetching data from the internet
-    @Published var showID: Int? // The show's ID. When this value changes, the UI updates ALL of its fields
+    @Published var isActive: Bool = false           // Whether a show is playing
+    @Published var isLoading: Bool = true           // Whether data is being fetched
+    @Published var showID: Int? = nil               // The show's ID
     
-    // Initializer
+    // A cancellable to store the timer subscription
+    private var refreshCancellable: AnyCancellable?
+    
     init() {
         Task {
-            /* Asynchronously starts the data fetching process */
             await self.refreshData()
         }
         
-        /* Filler data */
+        // sets up a timer that refreshes the data every hour (3600 seconds)
+        refreshCancellable = Timer.publish(every: 3600, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                Task {
+                    await self?.refreshData()
+                }
+            }
+        
+        // filler data
         title = "Not live"
         djs = ["--"]
         photoURL = URL(string: "https://wmuc.umd.edu")
@@ -35,6 +47,7 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     
     // Handles data fetching
     func refreshData() async {
+        print("Refreshing Digital Show at \(Date())")
         await InternetManager.loadDigitalShowData(for: self)
     }
     
@@ -63,18 +76,16 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
         title = data.title
         photoURL = data.image
         
-        // Parse the start and end times
+        // Parse start and end times
         let dateFormatter = ISO8601DateFormatter()
         startTime = dateFormatter.date(from: data.start)
         endTime = dateFormatter.date(from: data.end)
         
         showID = data.id
-        
         isActive = true
         updateLoadingState(withValue: false)
     }
     
-    // Set the show to inactive
     func setToInactive() {
         print("No active digital show.")
         isActive = false
@@ -84,8 +95,9 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     // Updates the current show from a payload received from the server
     @MainActor
     func updateCurrentShowFrom(payload: CurrentShowPayload) {
+        print("Digital Show updated with title: \(payload.title), image: \(payload.image)")
         title = payload.title
-        djs = ["DJ Name"] // TODO: Update with actual DJ names from payload
+        djs = ["DJ Name"] // TODO: Update with actual DJ names from payload.
         photoURL = payload.image
         
         do {

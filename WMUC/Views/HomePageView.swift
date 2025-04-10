@@ -99,26 +99,60 @@ struct HomePageView: View {
     private func togglePlayback(for radioType: RadioType) {
         switch radioType {
         case .fm:
-            // Only attempt playback if an FM show is active.
-            guard liveFMShow.isActive else { return }
-            
             if isPlayingFM {
                 audioManager.stopPlayback()
+                isPlayingFM.toggle()
             } else {
-                audioManager.playStream(url: fmRadioStreamURL)
+                Task {
+                    let coverImage: UIImage?
+                    if liveFMShow.isActive, let url = liveFMShow.photoURL {
+                        coverImage = await fetchCoverImage(from: url)
+                    } else {
+                        coverImage = UIImage(named: "notLive")
+                    }
+                    let titleToUse = liveFMShow.isActive ? (liveFMShow.title ?? "Unknown Show") : "WMUC 24/7"
+                    audioManager.playStream(url: fmRadioStreamURL,
+                                            title: titleToUse,
+                                            coverImage: coverImage)
+                    await MainActor.run {
+                        isPlayingFM.toggle()
+                        isPlayingDigital = false
+                    }
+                }
             }
-            isPlayingFM.toggle()         // Update fm play state
-            isPlayingDigital = false     // make sure dig stream is stopped
-            
         case .digital:
-            
             if isPlayingDigital {
                 audioManager.stopPlayback()
+                isPlayingDigital.toggle()
             } else {
-                audioManager.playStream(url: digitalRadioStreamURL)
+                Task {
+                    let coverImage: UIImage?
+                    if liveDigitalShow.isActive, let url = liveDigitalShow.photoURL {
+                        coverImage = await fetchCoverImage(from: url)
+                    } else {
+                        coverImage = UIImage(named: "notLive")
+                    }
+                    let titleToUse = liveDigitalShow.isActive ? (liveDigitalShow.title ?? "Unknown Show") : "WMUC 24/7"
+                    audioManager.playStream(url: digitalRadioStreamURL,
+                                            title: titleToUse,
+                                            coverImage: coverImage)
+                    await MainActor.run {
+                        isPlayingDigital.toggle()
+                        isPlayingFM = false
+                    }
+                }
             }
-            isPlayingDigital.toggle()
-            isPlayingFM = false          
+        }
+    }
+    
+    func fetchCoverImage(from url: URL?) async -> UIImage? {
+        guard let url = url else { return nil }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+        } catch {
+            print("Error fetching cover image: \(error)")
+            return nil
         }
     }
 }

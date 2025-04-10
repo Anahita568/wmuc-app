@@ -75,7 +75,7 @@ actor CurrentFMShowActor {
             loadingState = .error
         }
         
-        print(currentShowDetails)
+        //print(currentShowDetails)
         
         // TODO: Set earliestDateWhenFMStale
     }
