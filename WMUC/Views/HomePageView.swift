@@ -40,7 +40,7 @@ struct HomePageView: View {
                                     .font(.system(size: geometry.size.width * 0.06))
                                     .lineLimit(1)
                                     .minimumScaleFactor(0.5)
-                                    
+                                
                             }
                             .padding(.top, 30) // how wmuc logo is centered
                             .padding(.horizontal)
@@ -72,6 +72,7 @@ struct HomePageView: View {
                             .font(.system(size: geometry.size.width * 0.06))
                             .foregroundColor(.red)
                         
+                        
                         CurrentDigitalShowWidget(
                             width: .constant(geometry.size.width * 0.85),
                             isPlaying: $isPlayingDigital,
@@ -90,56 +91,61 @@ struct HomePageView: View {
                     .padding(.top, 40)      // top padding to shift content down
                     .padding(.horizontal)   // horizontal padding for layout margins
                 }
-                
+            }
+                    .onReceive(audioManager.$currentlyPlaying.combineLatest(audioManager.$isPlaying)) { playingType, isPlaying in
+                        isPlayingFM = isPlaying && playingType == .fm
+                        isPlayingDigital = isPlaying && playingType == .digital
+                    }
+                    .onReceive(audioManager.$isPlaying) { isPlaying in
+                                   if !isPlaying {
+                                       isPlayingFM = false
+                                       isPlayingDigital = false
+                }
                 
             }
+            
         }
     }
     
     private func togglePlayback(for radioType: RadioType) {
-        switch radioType {
-        case .fm:
-            if isPlayingFM {
-                audioManager.stopPlayback()
-                isPlayingFM.toggle()
-            } else {
-                Task {
-                    let coverImage: UIImage?
+        if audioManager.isPlaying && audioManager.currentlyPlaying == radioType {
+            // Pause current stream
+            audioManager.stopPlayback()
+            isPlayingFM = false
+            isPlayingDigital = false
+        } else {
+            Task {
+                let coverImage: UIImage?
+                let titleToUse: String
+
+                switch radioType {
+                case .fm:
                     if liveFMShow.isActive, let url = liveFMShow.photoURL {
                         coverImage = await fetchCoverImage(from: url)
                     } else {
                         coverImage = UIImage(named: "notLive")
                     }
-                    let titleToUse = liveFMShow.isActive ? (liveFMShow.title ?? "Unknown Show") : "WMUC 24/7"
+                    titleToUse = liveFMShow.isActive ? (liveFMShow.title ?? "Unknown Show") : "WMUC 24/7"
                     audioManager.playStream(url: fmRadioStreamURL,
                                             title: titleToUse,
-                                            coverImage: coverImage)
-                    await MainActor.run {
-                        isPlayingFM.toggle()
-                        isPlayingDigital = false
-                    }
-                }
-            }
-        case .digital:
-            if isPlayingDigital {
-                audioManager.stopPlayback()
-                isPlayingDigital.toggle()
-            } else {
-                Task {
-                    let coverImage: UIImage?
+                                            coverImage: coverImage,
+                                            type: .fm)
+                case .digital:
                     if liveDigitalShow.isActive, let url = liveDigitalShow.photoURL {
                         coverImage = await fetchCoverImage(from: url)
                     } else {
                         coverImage = UIImage(named: "notLive")
                     }
-                    let titleToUse = liveDigitalShow.isActive ? (liveDigitalShow.title ?? "Unknown Show") : "WMUC 24/7"
+                    titleToUse = liveDigitalShow.isActive ? (liveDigitalShow.title ?? "Unknown Show") : "WMUC 24/7"
                     audioManager.playStream(url: digitalRadioStreamURL,
                                             title: titleToUse,
-                                            coverImage: coverImage)
-                    await MainActor.run {
-                        isPlayingDigital.toggle()
-                        isPlayingFM = false
-                    }
+                                            coverImage: coverImage,
+                                            type: .digital)
+                }
+
+                await MainActor.run {
+                    isPlayingFM = (radioType == .fm)
+                    isPlayingDigital = (radioType == .digital)
                 }
             }
         }

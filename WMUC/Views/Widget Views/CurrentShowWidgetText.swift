@@ -30,7 +30,7 @@ struct CurrentShowWidgetText<T: CurrentShow & ObservableObject>: View {
                     .frame(width: 12, height: 12)
                     .foregroundColor(liveShow.isActive ? .red : .gray)
                 Text(liveShow.isActive ?
-                     "Live now until \(liveShow.endTime?.formatted(date: .omitted, time: .shortened) ?? "N/A")" :
+                     "Live until \(liveShow.endTime?.formatted(date: .omitted, time: .shortened) ?? "N/A")" :
                      "Not live")
                     .font(.system(size: 15))
                     .foregroundColor(liveShow.isActive ? .red : .gray)
