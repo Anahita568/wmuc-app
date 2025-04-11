@@ -33,12 +33,13 @@ struct CurrentDigitalShowWidget: View {
                 }) {
                     Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                         .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .clipShape(Circle())
-                }
+                               .scaledToFit()
+                               .frame(width: 26, height: 26)
+                               .foregroundColor(.black)
+                               .padding(18)
+                               .background(Circle().fill(Color.gray.opacity(0.4)))
+                       }
+                       .buttonStyle(PlainButtonStyle())
             }
             .padding(.horizontal, 18)
         } else {
