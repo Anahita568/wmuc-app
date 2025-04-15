@@ -14,13 +14,15 @@ struct CurrentDigitalShowWidget: View {
     
     var body: some View {
         if !liveDigitalShow.isLoading {
-            HStack {
+            HStack(spacing: 12) {
                 // Show Cover Photo with the active flag
                 CurrentShowWidgetPhotoCover(
                     photoURL: liveDigitalShow.photoURL,
                     width: $width,
                     isActive: liveDigitalShow.isActive
                 )
+                .frame(width: 0.3 * width, height: 0.3 * width)
+                .clipped()
                 
                 // Show Details: Title, Status, and End Time
                 CurrentShowWidgetText<CurrentDigitalShow>()
@@ -41,7 +43,8 @@ struct CurrentDigitalShowWidget: View {
                        }
                        .buttonStyle(PlainButtonStyle())
             }
-            .padding(.horizontal, 18)
+            .padding(.horizontal, 8) // move everything closer to edges
+            .padding(.vertical, 10)
         } else {
             // Display a loading view or a placeholder while data is being fetched
             Text("Loading Digital Show...")

@@ -18,12 +18,15 @@ struct CurrentFMShowWidget: View {
         
         return Group {
             if !liveFMShow.isLoading {
-                HStack {
+                HStack(spacing: 12) {
+                    // Image on the far left
                     CurrentShowWidgetPhotoCover(
                         photoURL: liveFMShow.photoURL,
                         width: $width,
                         isActive: liveFMShow.isActive
                     )
+                    .frame(width: 0.3 * width, height: 0.3 * width)
+                    .clipped()
                     
                     CurrentShowWidgetText<CurrentFMShow>()
                         .environmentObject(liveFMShow)
@@ -42,7 +45,8 @@ struct CurrentFMShowWidget: View {
                            }
                            .buttonStyle(PlainButtonStyle())
                 }
-                .padding(.horizontal, 18)
+                .padding(.horizontal, 8) // move everything closer to edges
+                .padding(.vertical, 10)
             } else {
                 Text("Loading FM Show...")
                     .frame(width: width)
@@ -51,3 +55,4 @@ struct CurrentFMShowWidget: View {
         }
     }
 }
+
