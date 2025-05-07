@@ -35,13 +35,18 @@ struct CurrentDigitalShowWidget: View {
                     Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                         .resizable()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .clipShape(Circle())
+                        .foregroundColor(.white)
+                        .padding([.trailing], 3)
+//                        .resizable()
+//                        .frame(width: 20, height: 20)
+//                        .foregroundColor(.black)
+//                        .padding()
+//                        .background(Color.gray.opacity(0.2))
+//                        .clipShape(Circle())
+                    
                 }
             }
-            .padding(.horizontal, 18)
+//            .padding(.horizontal, 18)
         } else {
             // Show a loading view or a placeholder while data is being fetched
             Text("Loading Digital Show...")

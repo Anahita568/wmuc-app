@@ -20,7 +20,7 @@ struct CurrentShowWidgetText: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 12, height: 12)
                     .foregroundStyle(showIsActive ? Color.red : Color.gray)
-                Text(showIsActive ? "Live now" : "Not live")
+                Text(showIsActive ? "Live now" : "Off air")
                     .fontDesign(.monospaced)
                     .fontWeight(.regular)
                     .fontWidth(.compressed)
@@ -31,11 +31,13 @@ struct CurrentShowWidgetText: View {
             
             Text(showIsActive ? "Until \(showEndTime.formatted(date: .omitted, time: .shortened))" : "----")
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
+                .padding([.bottom], 0)
             
             Text(showIsActive ? showTitle: "----")
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .fontWeight(.medium)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
         }
         .padding(.leading, 7)
     }

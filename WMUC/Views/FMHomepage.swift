@@ -15,6 +15,8 @@ struct FMHomepage: View {
             NavigationStack {
                 ScrollView {
                     LazyVStack(pinnedViews: [.sectionFooters]) {
+                        CurrentShowWidgetPhotoCover(photoURL: liveFMShow.photoURL, width: .constant(geometry.size.width * 2))
+                        
                         // Current FM Show Widget
                         CurrentFMShowWidget(
                             width: .constant(geometry.size.width),
@@ -35,6 +37,7 @@ struct FMHomepage: View {
                 }
             }
             .navigationTitle("FM")
+            .background(.black)
         }
     }
 }
