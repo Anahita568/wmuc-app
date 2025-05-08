@@ -14,9 +14,7 @@ struct CurrentFMShowWidget: View {
     var onPlayTapped: () -> Void     // Closure for play button action
     
     var body: some View {
-      
-        
-        return Group {
+        Group {
             if !liveFMShow.isLoading {
                 HStack(spacing: 12) {
                     // Image on the far left
@@ -28,24 +26,12 @@ struct CurrentFMShowWidget: View {
                     .frame(width: 0.3 * width, height: 0.3 * width)
                     .clipped()
                     
+                    // Show Details
                     CurrentShowWidgetText<CurrentFMShow>()
                         .environmentObject(liveFMShow)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Button(action: {
-                        onPlayTapped()
-                    }) {
-                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                            .resizable()
-                                   .scaledToFit()
-                                   .frame(width: 26, height: 26)
-                                   .foregroundColor(.black)
-                                   .padding(18)
-                                   .background(Circle().fill(Color.gray.opacity(0.4)))
-                           }
-                           .buttonStyle(PlainButtonStyle())
                 }
-                .padding(.horizontal, 8) // move everything closer to edges
+                .padding(.horizontal, 8)
                 .padding(.vertical, 10)
             } else {
                 Text("Loading FM Show...")
@@ -55,4 +41,3 @@ struct CurrentFMShowWidget: View {
         }
     }
 }
-

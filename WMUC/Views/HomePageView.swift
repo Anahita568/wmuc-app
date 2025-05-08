@@ -3,11 +3,11 @@
 //
 //  Created by Anahita on 11/5/24.
 import SwiftUI
+import Combine
 
 struct HomePageView: View {
     @EnvironmentObject var liveFMShow: CurrentFMShow
     @EnvironmentObject var liveDigitalShow: CurrentDigitalShow
-    
     @ObservedObject private var audioManager = AudioManager.shared
     
     @State private var isPlayingFM: Bool = false
@@ -18,98 +18,142 @@ struct HomePageView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        
-                        ZStack(alignment: .topLeading) {
-                            // gray background rectangle with rounded corners
-                            Rectangle()
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(height: geometry.size.height * 0.20) // % of screen height
-                                .cornerRadius(20)
+            NavigationView {
+                ZStack {
+                    Color(red: 0.5333, green: 0.21569, blue: 0.1765).ignoresSafeArea()
+                    
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 16) {
                             
-                            VStack(alignment: .leading, spacing: 8) {
-                                Image("wmucLogo")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: geometry.size.width * 0.8) // adjust logo width
-                                    .padding(.bottom, 4)
+                            // HEADER
+                            ZStack(alignment: .topLeading) {
+                                Rectangle()
+                                    .fill(Color.clear)
+                                    .frame(height: geometry.size.height * 0.18)
+                                    //.padding(.top, 20)
                                 
-                                Text("where college radio is good radio")
-                                    .font(.system(size: geometry.size.width * 0.06))
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.5)
-                                
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack(alignment: .lastTextBaseline, spacing: 4) {
+                                        Text("wmuc radio")
+                                            .font(.system(size: geometry.size.width * 0.1))
+                                            .foregroundColor(.white)
+                                        
+                                        Text("90.5")
+                                            .font(.system(size: geometry.size.width * 0.05))
+                                            .baselineOffset(geometry.size.height * 0.015)
+                                            .foregroundColor(.white)
+                                            
+                                    }
+                                    .padding(.top, 25)
+                                    
+                                    Text("where college radio is good radio")
+                                        .font(.system(size: geometry.size.width * 0.06))
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.5)
+                                        .foregroundColor(.white)
+                                    
+                                }
                             }
-                            .padding(.top, 30) // how wmuc logo is centered
-                            .padding(.horizontal)
+                            Spacer().frame(height: 5)
+                            
+                            // FM Section
+                            Button(action: {
+                                togglePlayback(for: .fm)
+                            }) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: isPlayingFM ? "pause.fill" : "play.fill")
+                                        .resizable()
+                                        .frame(width: 15, height: 15)
+                                        .foregroundColor(.white)
+                                    
+                                    Text("fm")
+                                        .font(.system(size: geometry.size.width * 0.06))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            Divider()
+                                .frame(height: 1.5)
+                                .overlay(.white)
+                            
+                            // FM Widget
+                            CurrentFMShowWidget(
+                                width: .constant(geometry.size.width * 0.85),
+                                isPlaying: $isPlayingFM,
+                                onPlayTapped: {
+                                    togglePlayback(for: .fm)
+                                }
+                            )
+                            .environmentObject(liveFMShow)
+                            
+                            Divider()
+                                .frame(height: 1.5)
+                                .overlay(.white)
+                            
+                            Spacer().frame(height: 14)
+                            
+                            // DIGITAL Section
+                            VStack(spacing: 15) {
+                                Button(action: {
+                                    togglePlayback(for: .digital)
+                                }) {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: isPlayingDigital ? "pause.fill" : "play.fill")
+                                            .resizable()
+                                            .frame(width: 15, height: 15)
+                                            .foregroundColor(.white)
+                                        
+                                        Text("digital")
+                                            .font(.system(size: geometry.size.width * 0.06))
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.white)
+                                
+                                CurrentDigitalShowWidget(
+                                    width: .constant(geometry.size.width * 0.85),
+                                    isPlaying: $isPlayingDigital,
+                                    onPlayTapped: {
+                                        togglePlayback(for: .digital)
+                                    }
+                                )
+                                .environmentObject(liveDigitalShow)
+                                
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.white)
+                            }
+                            
+                            Spacer()
                         }
-                        
-                        Text("what’s playing?/tune in")
-                            .font(.system(size: geometry.size.width * 0.07))
-                            .padding(.top, 5) //increase to increase space between text and logo
-                        
-                        Text("fm")
-                            .font(.system(size: geometry.size.width * 0.06))
-                            .padding(.top, 8) //increase to increase space between fm and what's playing
-                            .foregroundColor(.red)
-                        
-                        // fm show details and play/pause button
-                        CurrentFMShowWidget(
-                            width: .constant(geometry.size.width * 0.85), // widget width
-                            isPlaying: $isPlayingFM, // binding to play/pause state
-                            onPlayTapped: {
-                                togglePlayback(for: .fm) // handle fm play/pause
-                            }
-                        )
-                        .environmentObject(liveFMShow) // inject fm show data
                         .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        
-                        Text("digital")
-                            .font(.system(size: geometry.size.width * 0.06))
-                            .foregroundColor(.red)
-                        
-                        
-                        CurrentDigitalShowWidget(
-                            width: .constant(geometry.size.width * 0.85),
-                            isPlaying: $isPlayingDigital,
-                            onPlayTapped: {
-                                togglePlayback(for: .digital)
-                            }
-                        )
-                        .environmentObject(liveDigitalShow)
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        
-                        //add extra vertical space at the bottom of content
-                        Spacer(minLength: 100)
                     }
-                    .padding(.top, 40)      // top padding to shift content down
-                    .padding(.horizontal)   // horizontal padding for layout margins
                 }
-            }
-                    .onReceive(audioManager.$currentlyPlaying.combineLatest(audioManager.$isPlaying)) { playingType, isPlaying in
-                        isPlayingFM = isPlaying && playingType == .fm
-                        isPlayingDigital = isPlaying && playingType == .digital
+                .onReceive(audioManager.$currentlyPlaying.combineLatest(audioManager.$isPlaying)) { playingType, isPlaying in
+                    isPlayingFM = isPlaying && playingType == .fm
+                    isPlayingDigital = isPlaying && playingType == .digital
+                }
+                .onReceive(audioManager.$isPlaying) { isPlaying in
+                    if !isPlaying {
+                        isPlayingFM = false
+                        isPlayingDigital = false
                     }
-                    .onReceive(audioManager.$isPlaying) { isPlaying in
-                                   if !isPlaying {
-                                       isPlayingFM = false
-                                       isPlayingDigital = false
                 }
-                
+                .navigationTitle("")
+                .navigationBarHidden(true)
             }
-            
         }
     }
     
+    // MARK: - Toggle Logic
     private func togglePlayback(for radioType: RadioType) {
         if audioManager.isPlaying && audioManager.currentlyPlaying == radioType {
-            // Pause current stream
             audioManager.stopPlayback()
             isPlayingFM = false
             isPlayingDigital = false
@@ -117,32 +161,37 @@ struct HomePageView: View {
             Task {
                 let coverImage: UIImage?
                 let titleToUse: String
-
+                let publisher: AnyPublisher<CurrentShow, Never>
+                
                 switch radioType {
                 case .fm:
-                    if liveFMShow.isActive, let url = liveFMShow.photoURL {
-                        coverImage = await fetchCoverImage(from: url)
-                    } else {
-                        coverImage = UIImage(named: "notLive")
-                    }
+                    coverImage = liveFMShow.isActive && liveFMShow.photoURL != nil
+                        ? await fetchCoverImage(from: liveFMShow.photoURL)
+                        : UIImage(named: "notLive")
                     titleToUse = liveFMShow.isActive ? (liveFMShow.title ?? "Unknown Show") : "WMUC 24/7"
-                    audioManager.playStream(url: fmRadioStreamURL,
-                                            title: titleToUse,
-                                            coverImage: coverImage,
-                                            type: .fm)
+                    publisher = Just(liveFMShow).eraseToAnyPublisher()
+                    audioManager.playStream(
+                        url: fmRadioStreamURL,
+                        title: titleToUse,
+                        coverImage: coverImage,
+                        type: .fm,
+                        showPublisher: publisher
+                    )
                 case .digital:
-                    if liveDigitalShow.isActive, let url = liveDigitalShow.photoURL {
-                        coverImage = await fetchCoverImage(from: url)
-                    } else {
-                        coverImage = UIImage(named: "notLive")
-                    }
+                    coverImage = liveDigitalShow.isActive && liveDigitalShow.photoURL != nil
+                        ? await fetchCoverImage(from: liveDigitalShow.photoURL)
+                        : UIImage(named: "notLive")
                     titleToUse = liveDigitalShow.isActive ? (liveDigitalShow.title ?? "Unknown Show") : "WMUC 24/7"
-                    audioManager.playStream(url: digitalRadioStreamURL,
-                                            title: titleToUse,
-                                            coverImage: coverImage,
-                                            type: .digital)
+                    publisher = Just(liveDigitalShow).eraseToAnyPublisher()
+                    audioManager.playStream(
+                        url: digitalRadioStreamURL,
+                        title: titleToUse,
+                        coverImage: coverImage,
+                        type: .digital,
+                        showPublisher: publisher
+                    )
                 }
-
+                
                 await MainActor.run {
                     isPlayingFM = (radioType == .fm)
                     isPlayingDigital = (radioType == .digital)
@@ -150,7 +199,8 @@ struct HomePageView: View {
             }
         }
     }
-    
+
+    // MARK: - Helpers
     func fetchCoverImage(from url: URL?) async -> UIImage? {
         guard let url = url else { return nil }
         do {

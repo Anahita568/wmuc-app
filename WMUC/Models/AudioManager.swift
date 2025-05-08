@@ -7,6 +7,7 @@
 import AVFoundation
 import MediaPlayer
 import UIKit
+import Combine
 
 class AudioManager: ObservableObject {
     static let shared = AudioManager()
@@ -19,6 +20,8 @@ class AudioManager: ObservableObject {
     private var currentTitle: String?
     private var currentArtwork: MPMediaItemArtwork?
     
+    private var showCancellable: AnyCancellable? // track updates to title/image
+
     private init() {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
@@ -31,22 +34,61 @@ class AudioManager: ObservableObject {
         observeInterruptionNotifications()
     }
 
-    func playStream(url: URL, title: String, coverImage: UIImage?, type: RadioType) {
+    // MARK: - Playback
+    
+    func playStream(
+        url: URL,
+        title: String,
+        coverImage: UIImage?,
+        type: RadioType,
+        showPublisher: AnyPublisher<CurrentShow, Never>
+    ) {
         stopPlayback()
+
         currentStreamURL = url
         player = AVPlayer(url: url)
         player?.play()
         isPlaying = true
         currentlyPlaying = type
         currentTitle = title
-        
+
         if let image = coverImage {
             currentArtwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
         } else {
             currentArtwork = nil
         }
-        
+
         updateNowPlayingInfo(title: currentTitle, artwork: currentArtwork, duration: 0, currentTime: 0)
+
+        // observe the show for live updates
+        showCancellable = showPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] show in
+                guard let self = self, self.isPlaying else { return }
+                self.currentTitle = show.title ?? "Unknown Show"
+
+                if let url = show.photoURL {
+                    Task {
+                        if let (data, _) = try? await URLSession.shared.data(from: url),
+                           let image = UIImage(data: data) {
+                            self.currentArtwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                            self.updateNowPlayingInfo(
+                                title: self.currentTitle,
+                                artwork: self.currentArtwork,
+                                duration: 0,
+                                currentTime: self.player?.currentTime().seconds ?? 0
+                            )
+                        }
+                    }
+                } else {
+                    self.updateNowPlayingInfo(
+                        title: self.currentTitle,
+                        artwork: nil,
+                        duration: 0,
+                        currentTime: self.player?.currentTime().seconds ?? 0
+                    )
+                }
+            }
     }
 
     func pausePlayback() {
@@ -61,8 +103,25 @@ class AudioManager: ObservableObject {
         player = nil
         isPlaying = false
         currentlyPlaying = nil
+        showCancellable = nil // cancel updates
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
+
+    // MARK: - Now Playing Info
+
+    private func updateNowPlayingInfo(title: String?, artwork: MPMediaItemArtwork?, duration: TimeInterval, currentTime: TimeInterval) {
+        var nowPlayingInfo: [String: Any] = [
+            MPMediaItemPropertyTitle: title ?? "Unknown Show",
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
+            MPMediaItemPropertyPlaybackDuration: duration
+        ]
+        if let artwork = artwork {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
+        }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
+    // MARK: - Remote Command Handling
 
     private func setupRemoteCommandCenter() {
         let commandCenter = MPRemoteCommandCenter.shared()
@@ -86,19 +145,7 @@ class AudioManager: ObservableObject {
         }
     }
 
-    private func updateNowPlayingInfo(title: String?, artwork: MPMediaItemArtwork?, duration: TimeInterval, currentTime: TimeInterval) {
-        var nowPlayingInfo: [String: Any] = [
-            MPMediaItemPropertyTitle: title ?? "Unknown Show",
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
-            MPMediaItemPropertyPlaybackDuration: duration
-        ]
-        if let artwork = artwork {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-        }
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-    }
-
-    // MARK: - Audio Session Interruption
+    // MARK: - Interruption Handling
 
     private func observeInterruptionNotifications() {
         NotificationCenter.default.addObserver(
@@ -112,9 +159,7 @@ class AudioManager: ObservableObject {
     @objc private func handleAudioSessionInterruption(notification: Notification) {
         guard let userInfo = notification.userInfo,
               let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
-              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
-            return
-        }
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
 
         switch type {
         case .began:
@@ -122,7 +167,7 @@ class AudioManager: ObservableObject {
             isPlaying = false
         case .ended:
             print("Audio session interruption ended")
-            // Optionally resume
+            // Optionally auto-resume
         @unknown default:
             break
         }

@@ -18,10 +18,11 @@ struct CurrentShowWidgetText<T: CurrentShow & ObservableObject>: View {
                 .font(.system(size: 18))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .fontWeight(.medium)
+                .foregroundColor(.white)
             
             Text("DJ Name")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
