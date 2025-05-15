@@ -34,6 +34,17 @@ WMUC‑iOS
 
 ## Current Design
 
-| No live shows                             | Currently live                            |
-|--------------------------------------------|-------------------------------------------|
-| ![No live shows](docs/design1.png)         | ![Currently live](docs/design2.png)       |
+<table>
+  <tr>
+    <th>No live shows</th>
+    <th>Currently live</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/design1.png" width="300" alt="No live shows" />
+    </td>
+    <td align="center">
+      <img src="docs/design2.png" width="300" alt="Currently live" />
+    </td>
+  </tr>
+</table>
