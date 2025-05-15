@@ -1,9 +1,3 @@
-//
-//  README.md
-//  WMUC
-//
-//  Created by Anahita on 5/15/25.
-//
 
 # WMUC Radio – iOS App
 
@@ -18,6 +12,7 @@ Lets listeners stream WMUC‑FM (90.5 FM) and WMUC‑Digital wherever they are
 
 ## Project Structure
 
+```text
 WMUC‑iOS
 ├── Models
 │   ├── CurrentShowPayload.swift   # JSON → model
@@ -30,6 +25,7 @@ WMUC‑iOS
 │   ├── CurrentShowWidget*.swift  # Reusable widgets
 │   └── …
 └── Radio_practiceApp.swift       # App entry point
+```
 
 ## Goals for future
 
@@ -38,5 +34,6 @@ WMUC‑iOS
 
 ## Current Design
 
-
-![Current Design](docs/design1.png)
+| No live shows                             | Currently live                            |
+|--------------------------------------------|-------------------------------------------|
+| ![No live shows](docs/design1.png)         | ![Currently live](docs/design2.png)       |
