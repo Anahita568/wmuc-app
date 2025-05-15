@@ -4,8 +4,6 @@
 //
 //  Created by Akash B on 6/10/23.
 //
-
-
 import Foundation
 import Combine
 
@@ -23,6 +21,7 @@ class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate 
     
     // A cancellable to store the timer subscription
     private var refreshCancellable: AnyCancellable?
+   
     
     init() {
         // Start the initial refresh immediately
@@ -55,9 +54,9 @@ class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate 
         }
         
         // Filler data for initial display
-        title = "filler" // Default fallback title
+        title = "WMUC 24/7" // Default fallback title
         djs = ["--"]
-        photoURL = nil      // Use nil so that fallback ("notLive") is shown in the UI
+        photoURL = URL(string: "https://wmuc.umd.edu")
         startTime = Date.now
         endTime = Date.now
         showID = nil
@@ -96,38 +95,48 @@ class CurrentFMShow: CurrentShow, ObservableObject, InternetManagerShowDelegate 
     }
     
     func setData(_ data: CurrentShowPayload) {
-        title = data.title
+        title    = data.title
         photoURL = data.image
+
+        djs = data.personaNames ?? ["--"]   
         
-        //parse start and end dates
-        let dateFormatter = ISO8601DateFormatter()
-        startTime = dateFormatter.date(from: data.start)
-        endTime = dateFormatter.date(from: data.end)
-        
-        showID = data.id
-        isActive = true
+        // Parse start and end times
+        let iso   = ISO8601DateFormatter()
+        startTime = iso.date(from: data.start)
+        endTime   = iso.date(from: data.end)
+
+        showID    = data.id
+        isActive  = true
         updateLoadingState(withValue: false)
+
+        // hop to main actor before touching AudioManager
+        Task { @MainActor in
+            if AudioManager.shared.currentlyPlaying == .fm {
+                await AudioManager.shared.refreshNowPlaying(
+                    title: data.title,
+                    artworkURL: data.image
+                )
+            }
+        }
     }
     
     //Updates show's properies
     @MainActor
     func updateCurrentShowFrom(payload: CurrentShowPayload) {
+        print("FM Show updated with title: \(payload.title), image: \(payload.image)")
         title = payload.title
-        djs = ["DJ Name"] // TODO: Change later
+        djs = payload.personaNames ?? ["--"]  
         photoURL = payload.image
         
         do {
             startTime = try DateFormatter.formatFromISO8601(payload.start)
             endTime = try DateFormatter.formatFromISO8601(payload.end)
         } catch {
-            print("Error decoding ISO8601 in updateCurrentShowFrom(payload:) for FM")
+            print("Error decoding ISO8601 date for FM Show.")
         }
         
         isActive = true
         isLoading = false
-        
-        print("Updated current show!")
-        print(title ?? "No Title")
     }
     
     // Makes current show status inactive

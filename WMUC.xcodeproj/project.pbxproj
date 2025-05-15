@@ -16,7 +16,7 @@
 		383618D12A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */; };
 		385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */; };
 		38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */; };
-		38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */; };
+		38A20BE12B847BBA004E5F54 /* CurrentShowPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE02B847BBA004E5F54 /* CurrentShowPayload.swift */; };
 		38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A20BE22B85A48F004E5F54 /* DJActor.swift */; };
 		38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE5282A3596E00005BC2F /* CurrentShow.swift */; };
 		38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BAE52A2A3597E50005BC2F /* InternetManager.swift */; };
@@ -24,8 +24,8 @@
 		38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E83A2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift */; };
 		38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E83D2C0D3AE400CEA99A /* CurrentShowWidgetText.swift */; };
 		38E4E8472C0D404C00CEA99A /* CurrentDigitalShowActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */; };
-		38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4E8482C0D417800CEA99A /* notes for future.swift */; };
 		38EE06F32ACA695A006002DE /* RadioType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE06F22ACA695A006002DE /* RadioType.swift */; };
+		84089D122DCD1F9E0030F217 /* CurrentShowCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84089D112DCD1F970030F217 /* CurrentShowCombine.swift */; };
 		8477AF782CC5924100CC3608 /* CurrentDigitalShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */; };
 		8477AF7A2CC597F300CC3608 /* CurrentDigitalShowWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */; };
 		849712082CDA9B100099DEFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849712072CDA9B0B0099DEFC /* HomePageView.swift */; };
@@ -62,7 +62,7 @@
 		383618D02A2946F500CD574C /* Radio_practiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radio_practiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		385B0A492B354EE700C38981 /* CurrentFMShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowWidget.swift; sourceTree = "<group>"; };
 		38A20BDE2B847B35004E5F54 /* CurrentFMShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentFMShowActor.swift; sourceTree = "<group>"; };
-		38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuxiliaryHelpers.swift; sourceTree = "<group>"; };
+		38A20BE02B847BBA004E5F54 /* CurrentShowPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowPayload.swift; sourceTree = "<group>"; };
 		38A20BE22B85A48F004E5F54 /* DJActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJActor.swift; sourceTree = "<group>"; };
 		38A20BE62B8BFAE2004E5F54 /* Radio-practice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Radio-practice-Info.plist"; sourceTree = "<group>"; };
 		38BAE5282A3596E00005BC2F /* CurrentShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShow.swift; sourceTree = "<group>"; };
@@ -71,8 +71,9 @@
 		38E4E83A2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowWidgetPhotoCover.swift; sourceTree = "<group>"; };
 		38E4E83D2C0D3AE400CEA99A /* CurrentShowWidgetText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowWidgetText.swift; sourceTree = "<group>"; };
 		38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowActor.swift; sourceTree = "<group>"; };
-		38E4E8482C0D417800CEA99A /* notes for future.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "notes for future.swift"; sourceTree = "<group>"; };
 		38EE06F22ACA695A006002DE /* RadioType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioType.swift; sourceTree = "<group>"; };
+		84089D112DCD1F970030F217 /* CurrentShowCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShowCombine.swift; sourceTree = "<group>"; };
+		84089D182DD5CFD10030F217 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8477AF772CC5923900CC3608 /* CurrentDigitalShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShow.swift; sourceTree = "<group>"; };
 		8477AF792CC597E800CC3608 /* CurrentDigitalShowWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDigitalShowWidget.swift; sourceTree = "<group>"; };
 		849712072CDA9B0B0099DEFC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		383618A62A2946F400CD574C = {
 			isa = PBXGroup;
 			children = (
+				84089D1A2DD5D6A20030F217 /* docs */,
 				38A20BE62B8BFAE2004E5F54 /* Radio-practice-Info.plist */,
 				383618B12A2946F400CD574C /* WMUC */,
 				383618C32A2946F500CD574C /* WMUC practiceTests */,
@@ -128,7 +130,7 @@
 		383618B12A2946F400CD574C /* WMUC */ = {
 			isa = PBXGroup;
 			children = (
-				38E4E8482C0D417800CEA99A /* notes for future.swift */,
+				84089D182DD5CFD10030F217 /* README.md */,
 				38BAE5272A3596B90005BC2F /* Models */,
 				383618DD2A294AE900CD574C /* Views */,
 				383618B22A2946F400CD574C /* Radio_practiceApp.swift */,
@@ -184,8 +186,9 @@
 				849E6F6C2D003B4C009CBF3F /* AudioManager.swift */,
 				38A20BE22B85A48F004E5F54 /* DJActor.swift */,
 				38BAE52A2A3597E50005BC2F /* InternetManager.swift */,
-				38A20BE02B847BBA004E5F54 /* AuxiliaryHelpers.swift */,
+				38A20BE02B847BBA004E5F54 /* CurrentShowPayload.swift */,
 				38EE06F22ACA695A006002DE /* RadioType.swift */,
+				84089D112DCD1F970030F217 /* CurrentShowCombine.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +218,13 @@
 				38E4E8462C0D404C00CEA99A /* CurrentDigitalShowActor.swift */,
 			);
 			path = "Digital Show Classes";
+			sourceTree = "<group>";
+		};
+		84089D1A2DD5D6A20030F217 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,7 +361,7 @@
 				385B0A4A2B354EE700C38981 /* CurrentFMShowWidget.swift in Sources */,
 				38BAE5292A3596E00005BC2F /* CurrentShow.swift in Sources */,
 				38A20BE32B85A48F004E5F54 /* DJActor.swift in Sources */,
-				38A20BE12B847BBA004E5F54 /* AuxiliaryHelpers.swift in Sources */,
+				38A20BE12B847BBA004E5F54 /* CurrentShowPayload.swift in Sources */,
 				383618B52A2946F400CD574C /* ContentView.swift in Sources */,
 				38BAE52B2A3597E50005BC2F /* InternetManager.swift in Sources */,
 				38E4E83B2C0D38AD00CEA99A /* CurrentShowWidgetPhotoCover.swift in Sources */,
@@ -361,8 +371,8 @@
 				38A20BDF2B847B35004E5F54 /* CurrentFMShowActor.swift in Sources */,
 				38E4E83E2C0D3AE400CEA99A /* CurrentShowWidgetText.swift in Sources */,
 				849E6F6D2D003B52009CBF3F /* AudioManager.swift in Sources */,
+				84089D122DCD1F9E0030F217 /* CurrentShowCombine.swift in Sources */,
 				38BAE52D2A3598810005BC2F /* CurrentFMShow.swift in Sources */,
-				38E4E8492C0D417800CEA99A /* notes for future.swift in Sources */,
 				383618B32A2946F400CD574C /* Radio_practiceApp.swift in Sources */,
 				849712082CDA9B100099DEFC /* HomePageView.swift in Sources */,
 			);
@@ -563,7 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development: akashbapple@gmail.com (P7S2KZV36H)";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

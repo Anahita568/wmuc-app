@@ -9,167 +9,293 @@ import MediaPlayer
 import UIKit
 import Combine
 
+@MainActor
 class AudioManager: ObservableObject {
+
+    // MARK: - Singleton
     static let shared = AudioManager()
-    private var player: AVPlayer?
-    
-    @Published var isPlaying: Bool = false
-    @Published var currentlyPlaying: RadioType? = nil
-
-    private var currentStreamURL: URL?
-    private var currentTitle: String?
-    private var currentArtwork: MPMediaItemArtwork?
-    
-    private var showCancellable: AnyCancellable? // track updates to title/image
-
     private init() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            print("Audio session configured")
-        } catch {
-            print("Failed to configure audio session: \(error.localizedDescription)")
-        }
+        configureAudioSession()
         setupRemoteCommandCenter()
         observeInterruptionNotifications()
+        startLockScreenRefreshTimer()
+        #if DEBUG
+        //enableThirtySecondDebugRefresh()
+        #endif
     }
 
-    // MARK: - Playback
-    
+    // MARK: - Published state
+    @Published var isPlaying        : Bool       = false
+    @Published var currentlyPlaying : RadioType? = nil
+
+    // MARK: - Private state
+    private var player          : AVPlayer?
+    private var currentStreamURL: URL?
+    private var currentTitle    : String?
+    private var currentArtwork  : MPMediaItemArtwork?
+    private var refreshTimer    : AnyCancellable?
+    private var showCancellable : AnyCancellable?
+
+    // MARK: - Playback API
+    @MainActor
     func playStream(
-        url: URL,
-        title: String,
-        coverImage: UIImage?,
-        type: RadioType,
+        url          : URL,
+        title        : String,
+        coverImage   : UIImage?,
+        type         : RadioType,
         showPublisher: AnyPublisher<CurrentShow, Never>
     ) {
-        stopPlayback()
+        stopPlayback()                       // clears any previous stream
 
         currentStreamURL = url
-        player = AVPlayer(url: url)
+        player           = AVPlayer(url: url)
         player?.play()
-        isPlaying = true
-        currentlyPlaying = type
-        currentTitle = title
 
-        if let image = coverImage {
-            currentArtwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
-        } else {
-            currentArtwork = nil
+        isPlaying        = true
+        currentlyPlaying = type
+        currentTitle     = title
+        currentArtwork = coverImage.map { image in
+            MPMediaItemArtwork(boundsSize: image.size) { _ in image }
         }
 
-        updateNowPlayingInfo(title: currentTitle, artwork: currentArtwork, duration: 0, currentTime: 0)
+        updateNowPlayingInfo(
+            title      : currentTitle,
+            artwork    : currentArtwork,
+            duration   : 0,
+            currentTime: 0
+        )
 
-        // observe the show for live updates
+        // Live metadata subscription
         showCancellable = showPublisher
-            .receive(on: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)         // ensure main-actor
             .sink { [weak self] show in
-                guard let self = self, self.isPlaying else { return }
+                guard let self, self.isPlaying else { return }
+
                 self.currentTitle = show.title ?? "Unknown Show"
 
                 if let url = show.photoURL {
-                    Task {
+                    Task { [weak self] in
+                        guard let self else { return }
+
                         if let (data, _) = try? await URLSession.shared.data(from: url),
-                           let image = UIImage(data: data) {
-                            self.currentArtwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
-                            self.updateNowPlayingInfo(
-                                title: self.currentTitle,
-                                artwork: self.currentArtwork,
-                                duration: 0,
-                                currentTime: self.player?.currentTime().seconds ?? 0
-                            )
+                           let img       = UIImage(data: data) {
+
+                            await MainActor.run {
+                                self.currentArtwork = MPMediaItemArtwork(
+                                    boundsSize: img.size) { _ in img }
+
+                                self.updateNowPlayingInfo(
+                                    title      : self.currentTitle,
+                                    artwork    : self.currentArtwork,
+                                    duration   : 0,
+                                    currentTime: self.player?.currentTime().seconds ?? 0
+                                )
+                            }
                         }
                     }
                 } else {
                     self.updateNowPlayingInfo(
-                        title: self.currentTitle,
-                        artwork: nil,
-                        duration: 0,
+                        title      : self.currentTitle,
+                        artwork    : nil,
+                        duration   : 0,
                         currentTime: self.player?.currentTime().seconds ?? 0
                     )
                 }
             }
     }
 
+    @MainActor
     func pausePlayback() {
         player?.pause()
         isPlaying = false
-        let currentTime = player?.currentTime().seconds ?? 0
-        updateNowPlayingInfo(title: currentTitle, artwork: currentArtwork, duration: 0, currentTime: currentTime)
+
+        updateNowPlayingInfo(
+            title      : currentTitle,
+            artwork    : currentArtwork,
+            duration   : 0,
+            currentTime: player?.currentTime().seconds ?? 0
+        )
     }
 
+    @MainActor
     func stopPlayback() {
         player?.pause()
-        player = nil
-        isPlaying = false
-        currentlyPlaying = nil
-        showCancellable = nil // cancel updates
+        player            = nil
+        isPlaying         = false
+        currentlyPlaying  = nil
+        showCancellable   = nil
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
     }
 
-    // MARK: - Now Playing Info
+    // MARK: - Manual metadata refresh (used by actors)
+    @MainActor
+    func refreshNowPlaying(title: String?, artworkURL: URL?) async {
+        currentTitle = title ?? currentTitle
 
-    private func updateNowPlayingInfo(title: String?, artwork: MPMediaItemArtwork?, duration: TimeInterval, currentTime: TimeInterval) {
-        var nowPlayingInfo: [String: Any] = [
-            MPMediaItemPropertyTitle: title ?? "Unknown Show",
+        if let url = artworkURL,
+           let (data, _) = try? await URLSession.shared.data(from: url),
+           let image     = UIImage(data: data) {
+
+            currentArtwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+        }
+
+        updateNowPlayingInfo(
+            title      : currentTitle,
+            artwork    : currentArtwork,
+            duration   : 0,
+            currentTime: player?.currentTime().seconds ?? 0
+        )
+    }
+
+    // MARK: - Now Playing Info (main-actor-only)
+    private func updateNowPlayingInfo(
+        title      : String?,
+        artwork    : MPMediaItemArtwork?,
+        duration   : TimeInterval,
+        currentTime: TimeInterval
+    ) {
+        var info: [String: Any] = [
+            MPMediaItemPropertyTitle              : title ?? "Unknown Show",
             MPNowPlayingInfoPropertyElapsedPlaybackTime: currentTime,
-            MPMediaItemPropertyPlaybackDuration: duration
+            MPMediaItemPropertyPlaybackDuration   : duration,
+            MPNowPlayingInfoPropertyPlaybackRate  : isPlaying ? 1.0 : 0.0
         ]
-        if let artwork = artwork {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-        }
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        if let artwork { info[MPMediaItemPropertyArtwork] = artwork }
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = info
     }
 
-    // MARK: - Remote Command Handling
-
+    // MARK: - Remote Command Center
     private func setupRemoteCommandCenter() {
-        let commandCenter = MPRemoteCommandCenter.shared()
+        let cmd = MPRemoteCommandCenter.shared()
 
-        commandCenter.playCommand.addTarget { [weak self] _ in
-            guard let self = self, let player = self.player else { return .commandFailed }
-            player.play()
+        cmd.playCommand.addTarget { [weak self] _ in
+            guard let self else { return .commandFailed }
+            self.player?.play()
             self.isPlaying = true
-            let currentTime = player.currentTime().seconds
-            self.updateNowPlayingInfo(title: self.currentTitle, artwork: self.currentArtwork, duration: 0, currentTime: currentTime)
+            Task { @MainActor in
+                self.updateNowPlayingInfo(
+                    title      : self.currentTitle,
+                    artwork    : self.currentArtwork,
+                    duration   : 0,
+                    currentTime: self.player?.currentTime().seconds ?? 0
+                )
+            }
             return .success
         }
 
-        commandCenter.pauseCommand.addTarget { [weak self] _ in
-            guard let self = self, let player = self.player else { return .commandFailed }
-            player.pause()
+        cmd.pauseCommand.addTarget { [weak self] _ in
+            guard let self else { return .commandFailed }
+            self.player?.pause()
             self.isPlaying = false
-            let currentTime = player.currentTime().seconds
-            self.updateNowPlayingInfo(title: self.currentTitle, artwork: self.currentArtwork, duration: 0, currentTime: currentTime)
+            Task { @MainActor in
+                self.updateNowPlayingInfo(
+                    title      : self.currentTitle,
+                    artwork    : self.currentArtwork,
+                    duration   : 0,
+                    currentTime: self.player?.currentTime().seconds ?? 0
+                )
+            }
             return .success
         }
     }
 
-    // MARK: - Interruption Handling
+    // MARK: - Periodic lock-screen refresh
+    private func startLockScreenRefreshTimer() {
+        let calendar     = Calendar.current
+        let nextFullHour = calendar.nextDate(
+            after         : Date(),
+            matching      : DateComponents(minute: 0, second: 0),
+            matchingPolicy: .nextTime) ?? Date().addingTimeInterval(3600)
+
+        let delay = nextFullHour.timeIntervalSinceNow
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            Task { await self?.forceNowPlayingRefresh() }
+            self?.scheduleRepeatingControlBarRefresh()
+        }
+    }
+
+    private func scheduleRepeatingControlBarRefresh() {
+        refreshTimer = Timer.publish(every: 3600, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                Task { await self?.forceNowPlayingRefresh() }
+            }
+    }
+
+    @MainActor
+    private func forceNowPlayingRefresh() async {
+        updateNowPlayingInfo(
+            title      : currentTitle,
+            artwork    : currentArtwork,
+            duration   : 0,
+            currentTime: player?.currentTime().seconds ?? 0
+        )
+    }
+
+    // MARK: - Helpers
+    private func configureAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to configure audio session: \(error.localizedDescription)")
+        }
+    }
 
     private func observeInterruptionNotifications() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleAudioSessionInterruption),
-            name: AVAudioSession.interruptionNotification,
-            object: nil
+            name    : AVAudioSession.interruptionNotification,
+            object  : nil
         )
     }
 
     @objc private func handleAudioSessionInterruption(notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
-              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
+        guard
+            let info      = notification.userInfo,
+            let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type      = AVAudioSession.InterruptionType(rawValue: typeValue)
+        else { return }
 
-        switch type {
-        case .began:
-            print("Audio session interrupted")
-            isPlaying = false
-        case .ended:
-            print("Audio session interruption ended")
-            // Optionally auto-resume
-        @unknown default:
-            break
-        }
+        if type == .began { isPlaying = false }
     }
 }
+
+#if !DEBUG       // remove or flip to false for App-Store builds
+
+
+extension AudioManager {
+
+   
+    func enableThirtySecondDebugRefresh() {
+
+        // Cancel the normal 1-hour timer if it exists
+        refreshTimer?.cancel()
+
+        // New 30-second timer on the main actor
+        refreshTimer = Timer.publish(every: 30, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self else { return }
+
+                // Log what we’re about to push to the lock screen
+                let artDesc = (self.currentArtwork != nil) ? "artwork-set" : "nil"
+                let name    = self.currentTitle ?? "Unknown Show"
+                print("🛠 [DebugRefresh] Pushing “\(name)”  artwork: \(artDesc)")
+
+                // Refresh the metadata
+                Task { @MainActor in
+                    self.updateNowPlayingInfo(
+                        title      : self.currentTitle,
+                        artwork    : self.currentArtwork,
+                        duration   : 0,
+                        currentTime: self.player?.currentTime().seconds ?? 0
+                    )
+                }
+            }
+
+        print(" [DebugRefresh] 30-second lock-screen refresh ENABLED")
+    }
+}
+#endif

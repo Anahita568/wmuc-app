@@ -62,8 +62,7 @@ struct HomePageView: View {
                             }) {
                                 HStack(spacing: 12) {
                                     Image(systemName: isPlayingFM ? "pause.fill" : "play.fill")
-                                        .resizable()
-                                        .frame(width: 15, height: 15)
+                                        .imageScale(.large)
                                         .foregroundColor(.white)
                                     
                                     Text("fm")
@@ -100,8 +99,7 @@ struct HomePageView: View {
                                 }) {
                                     HStack(spacing: 12) {
                                         Image(systemName: isPlayingDigital ? "pause.fill" : "play.fill")
-                                            .resizable()
-                                            .frame(width: 15, height: 15)
+                                            .imageScale(.large)
                                             .foregroundColor(.white)
                                         
                                         Text("digital")
@@ -162,14 +160,17 @@ struct HomePageView: View {
                 let coverImage: UIImage?
                 let titleToUse: String
                 let publisher: AnyPublisher<CurrentShow, Never>
-                
+
                 switch radioType {
                 case .fm:
                     coverImage = liveFMShow.isActive && liveFMShow.photoURL != nil
                         ? await fetchCoverImage(from: liveFMShow.photoURL)
                         : UIImage(named: "notLive")
                     titleToUse = liveFMShow.isActive ? (liveFMShow.title ?? "Unknown Show") : "WMUC 24/7"
-                    publisher = Just(liveFMShow).eraseToAnyPublisher()
+
+                    //  continuous updates instead of Just(...)
+                    publisher = liveFMShow.changePublisher
+
                     audioManager.playStream(
                         url: fmRadioStreamURL,
                         title: titleToUse,
@@ -177,12 +178,16 @@ struct HomePageView: View {
                         type: .fm,
                         showPublisher: publisher
                     )
+
                 case .digital:
                     coverImage = liveDigitalShow.isActive && liveDigitalShow.photoURL != nil
                         ? await fetchCoverImage(from: liveDigitalShow.photoURL)
                         : UIImage(named: "notLive")
                     titleToUse = liveDigitalShow.isActive ? (liveDigitalShow.title ?? "Unknown Show") : "WMUC 24/7"
-                    publisher = Just(liveDigitalShow).eraseToAnyPublisher()
+
+                    // continuous updates instead of Just(...)
+                    publisher = liveDigitalShow.changePublisher
+
                     audioManager.playStream(
                         url: digitalRadioStreamURL,
                         title: titleToUse,

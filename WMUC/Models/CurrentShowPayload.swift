@@ -18,12 +18,14 @@ enum InternetState {
  from the server, after which it's converted an instance of this struct using JSONDecoder(), a
  Swift protocol. The struct instance is then sent to the appropriate class (CurrentFMShow, CurrentDigitalShow), which extracts the data. */
 struct CurrentShowPayload: Decodable {
-    // ⚠️: THE NAME AND TYPE OF THESE PROPERTIES MUST BE IDENTICAL TO THE CORRESPONDING JSON VALUE-KEY PAIR IN THE CURRENT SHOW PAYLOAD RETURNED FROM THE SERVER. NOT CHANGE THE NAME OF THESE PROPERTIES UNLESS THE CORRESPONDING KEY NAME CHANGES. IT IS HIGHLY UNLIKELY THAT THE TYPE WILL EVER NEED TO BE CHANGED.
+    // : THE NAME AND TYPE OF THESE PROPERTIES MUST BE IDENTICAL TO THE CORRESPONDING JSON VALUE-KEY PAIR IN THE CURRENT SHOW PAYLOAD RETURNED FROM THE SERVER. NOT CHANGE THE NAME OF THESE PROPERTIES UNLESS THE CORRESPONDING KEY NAME CHANGES. IT IS HIGHLY UNLIKELY THAT THE TYPE WILL EVER NEED TO BE CHANGED.
     let start: String
     let end: String
     let title: String
     let image: URL
     let id: Int
+    
+    let personaNames: [String]?
 }
 
 // A custom error type for internet operation-related failures that don't throw errors by default

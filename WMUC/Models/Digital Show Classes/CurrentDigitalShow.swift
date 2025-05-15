@@ -19,6 +19,7 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     @Published var isLoading: Bool = true           // Whether data is being fetched
     @Published var showID: Int? = nil               // The show's ID
     
+  
     // A cancellable to store the timer subscription
     private var refreshCancellable: AnyCancellable?
     
@@ -54,7 +55,7 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
         
         
         // filler data
-        title = "Not live"
+        title = "WMUC 24/7"
         djs = ["--"]
         photoURL = URL(string: "https://wmuc.umd.edu")
         startTime = Date.now
@@ -73,7 +74,6 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     
     // Handles data fetching
     func refreshData() async {
-        print("Refreshing Digital Show at \(Date())")
         await InternetManager.loadDigitalShowData(for: self)
     }
     
@@ -99,19 +99,32 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     
     // Set the data when a digital show payload is received
     func setData(_ data: CurrentShowPayload) {
-        title = data.title
+
+        title    = data.title
         photoURL = data.image
-        
+
+        // store the DJ names
+        djs = data.personaNames ?? ["--"]
+
         // Parse start and end times
-        let dateFormatter = ISO8601DateFormatter()
-        startTime = dateFormatter.date(from: data.start)
-        endTime = dateFormatter.date(from: data.end)
-        
-        showID = data.id
-        isActive = true
+        let iso   = ISO8601DateFormatter()
+        startTime = iso.date(from: data.start)
+        endTime   = iso.date(from: data.end)
+
+        showID    = data.id
+        isActive  = true
         updateLoadingState(withValue: false)
+
+        // hop to main actor before touching AudioManager 
+        Task { @MainActor in
+            if AudioManager.shared.currentlyPlaying == .digital {
+                await AudioManager.shared.refreshNowPlaying(
+                    title: data.title,
+                    artworkURL: data.image
+                )
+            }
+        }
     }
-    
     func setToInactive() {
         print("No active digital show.")
         isActive = false
@@ -123,7 +136,7 @@ class CurrentDigitalShow: CurrentShow, ObservableObject, InternetManagerShowDele
     func updateCurrentShowFrom(payload: CurrentShowPayload) {
         print("Digital Show updated with title: \(payload.title), image: \(payload.image)")
         title = payload.title
-        djs = ["DJ Name"] // TODO: Update with actual DJ names from payload.
+        djs   = payload.personaNames ?? ["DJ"]// TODO: Update with actual DJ names from payload.
         photoURL = payload.image
         
         do {
